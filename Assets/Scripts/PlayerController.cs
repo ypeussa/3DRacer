@@ -11,10 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public List<WheelCollider> tires;
 
 	Rigidbody rb;
-
-	float dirFloat;
-
-	bool grounded;
+	public Transform centerOfMassEmpty;
 
 	GameObject mainCam;
 	Vector3 mainCamStartPos;
@@ -23,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 		mainCam = GameObject.FindGameObjectWithTag("MainCamera");
 		mainCamStartPos = mainCam.transform.position;
 		rb = GetComponent<Rigidbody>();
-		rb.centerOfMass = Vector3.zero;
+		rb.centerOfMass = centerOfMassEmpty.localPosition;
 	}
 
 	void Update () {
