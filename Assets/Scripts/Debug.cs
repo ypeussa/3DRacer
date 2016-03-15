@@ -5,6 +5,8 @@ using System.Collections;
 public class Debug : MonoBehaviour {
 
 	public Text debugText;
+	public Text lapText;
+	int lap;
 	Vector3 playerStartPos;
 	GameObject player;
 	Rigidbody rb;
@@ -28,5 +30,14 @@ public class Debug : MonoBehaviour {
 
 	void TextUpdate () {
 		
+	}
+
+	void LapCounter () {
+		lap++;
+		lapText.text = "Lap " + lap;
+	}
+
+	void OnTriggerEnter (Collider c) {
+		LapCounter();
 	}
 }

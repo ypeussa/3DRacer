@@ -14,11 +14,12 @@ public class PlayerController : MonoBehaviour {
 	public Transform centerOfMassEmpty;
 
 	GameObject mainCam;
-	Vector3 mainCamStartPos;
+	Vector3 playerLastPos;
+	Vector3 playerDeltaPos;
 
 	void Start () {
 		mainCam = GameObject.FindGameObjectWithTag("MainCamera");
-		mainCamStartPos = mainCam.transform.position;
+		playerLastPos = transform.position;
 		rb = GetComponent<Rigidbody>();
 		rb.centerOfMass = centerOfMassEmpty.localPosition;
 	}
@@ -39,12 +40,12 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.W)) {
 			for (int i = 0; i < tires.Count; i++) {
-				tires[i].motorTorque = speed;
+				tires[i].motorTorque = speed * Input.GetAxis("Vertical");
 			}
 		}
 		if (Input.GetKey(KeyCode.S)) {
 			for (int i = 0; i < tires.Count; i++) {
-				tires[i].motorTorque = -speed;
+				tires[i].motorTorque = speed * Input.GetAxis("Vertical");
 			}
 		}
 
@@ -56,12 +57,12 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.A)) {
 			for (int i = 0; i < tires.Count / 2; i++) {
-				tires[i].steerAngle = -turnAngle;
+				tires[i].steerAngle = turnAngle * Input.GetAxis("Horizontal");
 			}
 		}
 		if (Input.GetKey(KeyCode.D)) {
 			for (int i = 0; i < tires.Count / 2; i++) {
-				tires[i].steerAngle = turnAngle;
+				tires[i].steerAngle = turnAngle * Input.GetAxis("Horizontal");
 			}
 		}
 
@@ -73,6 +74,9 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void CameraFollow () {
-		mainCam.transform.position = mainCamStartPos + transform.position;
+		playerDeltaPos = transform.position - playerLastPos;
+		mainCam.transform.position += playerDeltaPos;
+
+		playerLastPos = transform.position;
 	}
 }
