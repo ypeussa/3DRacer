@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 	public float scrollSpeed;
 
 	public List<WheelCollider> tires;
+	List<GameObject> tireModels;
 
 	Rigidbody rb;
 	public Transform centerOfMassEmpty;
@@ -22,6 +23,11 @@ public class PlayerController : MonoBehaviour {
 		playerLastPos = transform.position;
 		rb = GetComponent<Rigidbody>();
 		rb.centerOfMass = centerOfMassEmpty.localPosition;
+
+		tireModels = new List<GameObject>();
+		for (int i = 0; i < tires.Count; i++) {
+			tireModels.Add(tires[i].transform.Find("Tire Model").gameObject);
+		}
 	}
 
 	void Update () {
@@ -58,11 +64,13 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey(KeyCode.A)) {
 			for (int i = 0; i < tires.Count / 2; i++) {
 				tires[i].steerAngle = turnAngle * Input.GetAxis("Horizontal");
+				tireModels[i].transform.localRotation = Quaternion.Euler(0, turnAngle * Input.GetAxis("Horizontal"), 90);
 			}
 		}
 		if (Input.GetKey(KeyCode.D)) {
 			for (int i = 0; i < tires.Count / 2; i++) {
 				tires[i].steerAngle = turnAngle * Input.GetAxis("Horizontal");
+				tireModels[i].transform.localRotation = Quaternion.Euler(0, turnAngle * Input.GetAxis("Horizontal"), 90);
 			}
 		}
 

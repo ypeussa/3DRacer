@@ -37,7 +37,11 @@ public class Debug : MonoBehaviour {
 		lapText.text = "Lap " + lap;
 	}
 
+	/*
 	void OnTriggerEnter (Collider c) {
-		LapCounter();
+		if (c.transform.parent.tag == "Player" || c.transform.parent.tag == "NPC") {
+			LapCounter();
+		}
 	}
+	*/
 }
