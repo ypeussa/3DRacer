@@ -12,7 +12,7 @@ public class NPCController : MonoBehaviour {
 	public List<WheelCollider> tires;
 	List<GameObject> tireModels;
 
-	public List<Transform> allNodes;
+	List<Transform> allNodes;
 	GameObject[] nodesArray;
 	public int nextNodeIndex = -1;
 	Vector3 nextNodePos;
@@ -31,6 +31,7 @@ public class NPCController : MonoBehaviour {
 	bool start;
 
 	void Start () {
+		allNodes = new List<Transform>();
 		path = new NavMeshPath();
 		AddNodesToList();
 		SetNodePos(allNodes[0].GetComponent<BoxCollider>().size.x);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 
+	public bool followingCamera;
 	public float speed;
 	public float turnAngle;
 	public float scrollSpeed;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		Controls();
+		if (followingCamera)
 		CameraFollow();
 
 		if (Input.GetKey(KeyCode.LeftShift)) {
