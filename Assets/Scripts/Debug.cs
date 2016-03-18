@@ -12,7 +12,7 @@ public class Debug : MonoBehaviour {
 	Rigidbody rb;
 
 	void Start () {
-		player = GameObject.Find("Player");
+		player = GameObject.FindGameObjectWithTag("Player");
 		playerStartPos = player.transform.position;
 		rb = player.GetComponent<Rigidbody>();
 	}

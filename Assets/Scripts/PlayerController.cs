@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D)) {
 			for (int i = 0; i < tires.Count / 2; i++) {
 				tires[i].steerAngle = 0;
+				tireModels[i].transform.localRotation = Quaternion.Euler(0, 0, 90);
 			}
 		}
 	}

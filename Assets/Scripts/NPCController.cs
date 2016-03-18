@@ -16,8 +16,11 @@ public class NPCController : MonoBehaviour {
 	GameObject[] nodesArray;
 	public int nextNodeIndex = -1;
 	Vector3 nextNodePos;
+	
 	public float nodePosMaxOffset;
+	public bool offsetOnlyRight;
 	Vector3 nextPathPoint;
+	Vector3 lastPathPoint;
 	Vector3 posToPathPoint;
 
 	public float searchPathInterval;
@@ -27,6 +30,7 @@ public class NPCController : MonoBehaviour {
 
 	Vector3 lastPos;
 	public float deltaSpeed;
+	float distToNextNode;
 
 	bool start;
 
@@ -34,6 +38,7 @@ public class NPCController : MonoBehaviour {
 		allNodes = new List<Transform>();
 		path = new NavMeshPath();
 		AddNodesToList();
+		distToNextNode = Vector3.Distance(transform.position, allNodes[0].position);
 		SetNodePos(allNodes[0].GetComponent<BoxCollider>().size.x);
 		SearchNextPoint();
 		start = true;
@@ -63,6 +68,8 @@ public class NPCController : MonoBehaviour {
 		
 		posToPathPoint = nextPathPoint - transform.position;
 
+		float dist = Vector3.Distance(transform.position, nextPathPoint);
+		float percentToNextNode =  dist / distToNextNode;
 		float tireAngle = Vector3.Angle(posToPathPoint, transform.forward);
 		float nodeSideDot = Vector3.Dot(posToPathPoint.normalized, transform.right);
 		float nodeFrontDot = Vector3.Dot(posToPathPoint.normalized, transform.forward);
@@ -84,7 +91,7 @@ public class NPCController : MonoBehaviour {
 
 		for (int i = 0; i < tires.Count; i++) {
 			if (nodeFrontDot > 0.1f) {
-				tires[i].motorTorque = speed * nodeFrontDot;
+				tires[i].motorTorque = speed * nodeFrontDot * percentToNextNode;
 			} else if (nodeFrontDot < -0.1f) {
 				tires[i].motorTorque = -speed * (1 - nodeFrontDot);
 			} else {
@@ -116,8 +123,13 @@ public class NPCController : MonoBehaviour {
 		}
 		
 		float randomX = Random.Range(-nodePosMaxOffset, nodePosMaxOffset);
-		randomX = Mathf.Clamp(randomX, -nodeWidght / 2, nodeWidght / 2);
+		if (offsetOnlyRight) {
+			randomX = Mathf.Clamp(randomX, 0, nodeWidght / 2);
+		} else {
+			randomX = Mathf.Clamp(randomX, -nodeWidght / 2, nodeWidght / 2);
+		}
 		nextNodePos = allNodes[nextNodeIndex].position + allNodes[nextNodeIndex].right * randomX;
+		distToNextNode = Vector3.Distance(transform.position, nextNodePos);
 	}
 
 	void SearchNextPoint () {
@@ -126,6 +138,7 @@ public class NPCController : MonoBehaviour {
 		} else {
 			NavMesh.CalculatePath(transform.position, nextNodePos, NavMesh.AllAreas, path);
 		}
+
 		if (path.corners.Length > 1) {
 			nextPathPoint = path.corners[1];
 		} else if (path.corners.Length == 1) {
