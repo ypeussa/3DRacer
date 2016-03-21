@@ -33,6 +33,8 @@ public class NPCController : MonoBehaviour {
 	float distToNextNode;
 
 	bool start;
+	[HideInInspector]
+	public bool beginGame;
 
 	void Start () {
 		allNodes = new List<Transform>();
@@ -50,6 +52,7 @@ public class NPCController : MonoBehaviour {
 	}
 
 	void Update () {
+		if (beginGame)
 		NPCMovement();
 	}
 
@@ -134,7 +137,8 @@ public class NPCController : MonoBehaviour {
 
 	void SearchNextPoint () {
 		if (GetComponent<NavMeshObstacle>().isActiveAndEnabled) {
-			NavMesh.CalculatePath(transform.position + (posToPathPoint.normalized * 2), nextNodePos, NavMesh.AllAreas, path);
+			NavMesh.CalculatePath(transform.position + (posToPathPoint.normalized * 3), nextNodePos, NavMesh.AllAreas, path);
+			//NavMesh.CalculatePath(transform.position, nextNodePos, NavMesh.AllAreas, path);
 		} else {
 			NavMesh.CalculatePath(transform.position, nextNodePos, NavMesh.AllAreas, path);
 		}

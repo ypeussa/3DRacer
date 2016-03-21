@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour {
 		Controls();
 		if (followingCamera)
 		CameraFollow();
-
 		if (Input.GetKey(KeyCode.LeftShift)) {
 			speed += Input.mouseScrollDelta.y * scrollSpeed;
 		} else {
