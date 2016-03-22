@@ -4,24 +4,25 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 
-	public bool followingCamera;
 	public float speed;
 	public float turnAngle;
 	public float scrollSpeed;
-
 	public List<WheelCollider> tires;
 	List<GameObject> tireModels;
+	GameObject[] nodes;
+	Vector3 nextNodePos;
 
 	Rigidbody rb;
 	public Transform centerOfMassEmpty;
 
-	GameObject mainCam;
-	Vector3 playerLastPos;
+	int nodeIndex;
+
+	//Vector3 playerLastPos;
 	Vector3 playerDeltaPos;
 
 	void Start () {
-		mainCam = GameObject.FindGameObjectWithTag("MainCamera");
-		playerLastPos = transform.position;
+		nodes = GameObject.FindGameObjectsWithTag("Node");
+		//playerLastPos = transform.position;
 		rb = GetComponent<Rigidbody>();
 		rb.centerOfMass = centerOfMassEmpty.localPosition;
 
@@ -34,8 +35,6 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		Controls();
-		if (followingCamera)
-		CameraFollow();
 		if (Input.GetKey(KeyCode.LeftShift)) {
 			speed += Input.mouseScrollDelta.y * scrollSpeed;
 		} else {
@@ -82,11 +81,24 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
-	
-	void CameraFollow () {
-		playerDeltaPos = transform.position - playerLastPos;
-		mainCam.transform.position += playerDeltaPos;
+	public void PassedNode (Vector3 nodePos) {
+		if (nodeIndex < nodes.Length - 1) {
+			nodeIndex++;
+		} else {
+			nodeIndex = 0;
+		}
+		nextNodePos = nodePos;
+	}
 
-		playerLastPos = transform.position;
+	public Vector3 GetNextNodePos () {
+		return nextNodePos;
+	}
+
+	public int GetNodeIndex () {
+		return nodeIndex;
+	}
+
+	public float GetDistanceToNode () {
+		return Vector3.Distance(transform.position, nextNodePos);
 	}
 }

@@ -11,11 +11,27 @@ public class NodeScript : MonoBehaviour {
 	public float thisToThirdAngle;
 	public float secondToThirdAngle;
 
+	HUDScript hudS;
+	PlayerController playerS;
+
 	void Start () {
 		CalculateAngles();
 	}
 
+	public void NodeStart () {
+		hudS = GameObject.Find("HUD").GetComponent<HUDScript>();
+		playerS = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+	}
+
 	void OnTriggerEnter (Collider c) {
+		if (c.tag == "Player") {
+			if (playerS.GetNodeIndex() == int.Parse(name.Remove(0, 4))) {
+				playerS.PassedNode(secondNode.position);
+				if (name == "Node0") {
+					hudS.LapUpdate();
+				}
+			}
+		}
 
 		if (c.tag == "NPC") {
 			if (c.GetComponent<NPCController>() != null) {
@@ -27,6 +43,9 @@ public class NodeScript : MonoBehaviour {
 				}
 			} else if (c.GetComponent<NavMeshAgentController>() != null) {
 				c.GetComponent<NavMeshAgentController>().SetNextPath();
+				if (name == "Node0") {
+					c.GetComponent<NavMeshAgentController>().UpdateLap();
+				}
 			}
 		}
 	}

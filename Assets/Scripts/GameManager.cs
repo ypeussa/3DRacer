@@ -19,7 +19,13 @@ public class GameManager : MonoBehaviour {
 	public float avoidanceDistance;
 	public float timeScale;
 
+	GameObject[] nodes;
+
+	[HideInInspector]
+	public bool gameStart;
+
 	void Start () {
+		nodes = GameObject.FindGameObjectsWithTag("Node");
 		mainCam = GameObject.FindGameObjectWithTag("MainCamera");
 		//Time.timeScale = 0;
 		allNPCs = GameObject.FindGameObjectsWithTag("NPC");
@@ -43,18 +49,26 @@ public class GameManager : MonoBehaviour {
 						}
 					}
 				}
-			}			
+			}
 		}
 	}
 
 	public void StartGame () {
-		Time.timeScale = 1;
+		gameStart = true;
 		Instantiate(cars[carIndex], spawnPoint.position, Quaternion.Euler(Vector3.zero));
 		carPicker.SetActive(false);
 		mainCam.transform.position = cameraStart.position;
 		mainCam.transform.rotation = cameraStart.rotation;
+		mainCam.GetComponent<CameraScript>().CameraFollow(true);
 		for (int i = 0; i < allNPCs.Length; i++) {
-			allNPCs[i].GetComponent<NPCController>().beginGame = true;
+			if (allNPCs[i].GetComponent<NPCController>() != null) {
+				allNPCs[i].GetComponent<NPCController>().beginGame = true;
+			} else if (allNPCs[i].GetComponent<NavMeshAgentController>() != null) {
+				allNPCs[i].GetComponent<NavMeshAgentController>().SetNextPath();
+			}
+		}
+		for (int i = 0; i < nodes.Length; i++) {
+			nodes[i].GetComponent<NodeScript>().NodeStart();
 		}
 	}
 
