@@ -20,6 +20,8 @@ public class HUDScript : MonoBehaviour {
 	GameManager gm;
 
 	void Start () {
+		
+		lapString = "Lap " + lap + " / " + maxLaps;
 		gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 		allNPC = GameObject.FindGameObjectsWithTag("NPC");
 		amountOfCars = allNPC.Length + 1;
@@ -27,7 +29,7 @@ public class HUDScript : MonoBehaviour {
 
 	void Update () {
 		if (gm.gameStart) {
-			PlayerPositionUpdate();
+			//PlayerPositionUpdate();
 		}
 	}
 
@@ -45,16 +47,12 @@ public class HUDScript : MonoBehaviour {
 			NavMeshAgentController agentCont = allNPC[i].GetComponent<NavMeshAgentController>();
 			if (lap < agentCont.GetCurrentLap()) {
 				position++;
-				print(i + " Lap");
 			} else if (pc.GetNodeIndex() < agentCont.GetNodeIndex()) {
 				position++;
-				print(i + " NodeIndex");
 			} else if (pc.GetNodeIndex() == agentCont.GetNodeIndex() && pc.GetDistanceToNode() > agentCont.GetDistanceToNode()) {
 				position++;
-				print(i + " DistanceToNode");
 			} else {
 				position--;
-				print(i + " Ahead");
 			}
 		}
 

@@ -9,6 +9,9 @@ public class NavMeshAgentController : MonoBehaviour {
 	int nodeIndex;
 	int currentLap;
 
+	//[HideInInspector]
+	//public bool aheadOfPlayer;
+
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
 	}
