@@ -15,37 +15,57 @@ public class GameManager : MonoBehaviour {
 	int carIndex;
 
 	GameObject mainCam;
+	public float gameStartCamSize;
 	GameObject[] allNPCs;
 	public float avoidanceDistance;
 	public float timeScale;
 
 	GameObject[] nodes;
 
+	public bool spawnRandomNPC;
+	public List<GameObject> npcPrefabs;
+	GameObject[] spawns;
+
 	[HideInInspector]
 	public bool gameStart;
 
 	void Start () {
 		nodes = GameObject.FindGameObjectsWithTag("Node");
+		spawns = GameObject.FindGameObjectsWithTag("NPCSpawn");
+		SpawnNPC();
 		mainCam = GameObject.FindGameObjectWithTag("MainCamera");
-		//Time.timeScale = 0;
 		allNPCs = GameObject.FindGameObjectsWithTag("NPC");
 		print(allNPCs.Length + " NPCs");
 	}
 
+	void SpawnNPC () {
+		for (int i = 0; i < spawns.Length; i++) {
+			GameObject npc = null;
+			if (spawnRandomNPC) {
+				int randomIndex = Random.Range(0, npcPrefabs.Count);
+				npc = (GameObject)Instantiate(npcPrefabs[randomIndex], spawns[i].transform.position, npcPrefabs[randomIndex].transform.rotation);
+			} else {
+				npc = (GameObject)Instantiate(npcPrefabs[i], spawns[i].transform.position, npcPrefabs[i].transform.rotation);
+			}
+			npc.name = "NPC" + i;
+		}
+	}
+
 	void FixedUpdate () {
+		if (gameStart) {
+			//Time.timeScale = timeScale;
+			for (int i = 0; i < allNPCs.Length; i++) {
+				for (int j = 0; j < allNPCs.Length; j++) {
+					if (allNPCs[i].gameObject != allNPCs[j].gameObject) {
+						// If Wheel Collider NPCs
+						if (allNPCs[i].GetComponent<NPCController>() != null && allNPCs[j].GetComponent<NPCController>() != null) {
+							if (Vector3.Distance(allNPCs[i].transform.position, allNPCs[j].transform.position) < avoidanceDistance || allNPCs[i].GetComponent<NPCController>().deltaSpeed < 0.01f) {
+								//allNPCs[i].GetComponent<NavMeshObstacle>().enabled = true;
+								allNPCs[j].GetComponent<NavMeshObstacle>().enabled = true;
 
-		//Time.timeScale = timeScale;
-		for (int i = 0; i < allNPCs.Length; i++) {
-			for (int j = 0; j < allNPCs.Length; j++) {
-				if (allNPCs[i].gameObject != allNPCs[j].gameObject) {
-					// If Wheel Collider NPCs
-					if (allNPCs[i].GetComponent<NPCController>() != null && allNPCs[j].GetComponent<NPCController>() != null) {
-						if (Vector3.Distance(allNPCs[i].transform.position, allNPCs[j].transform.position) < avoidanceDistance || allNPCs[i].GetComponent<NPCController>().deltaSpeed < 0.01f) {
-							//allNPCs[i].GetComponent<NavMeshObstacle>().enabled = true;
-							allNPCs[j].GetComponent<NavMeshObstacle>().enabled = true;
-
-						} else {
-							allNPCs[i].GetComponent<NavMeshObstacle>().enabled = false;
+							} else {
+								allNPCs[i].GetComponent<NavMeshObstacle>().enabled = false;
+							}
 						}
 					}
 				}
@@ -59,6 +79,7 @@ public class GameManager : MonoBehaviour {
 		carPicker.SetActive(false);
 		mainCam.transform.position = cameraStart.position;
 		mainCam.transform.rotation = cameraStart.rotation;
+		mainCam.GetComponent<Camera>().orthographicSize = gameStartCamSize;
 		mainCam.GetComponent<CameraScript>().CameraFollow(true);
 		for (int i = 0; i < allNPCs.Length; i++) {
 			if (allNPCs[i].GetComponent<NPCController>() != null) {
@@ -76,7 +97,7 @@ public class GameManager : MonoBehaviour {
 		if (carIndex < cars.Count - 1) {
 			allModels.transform.position += new Vector3(-15, 0, 0);
 			carIndex++;
-		}		
+		}
 	}
 
 	public void Previous () {

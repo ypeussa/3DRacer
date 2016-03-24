@@ -20,8 +20,8 @@ public class HUDScript : MonoBehaviour {
 	GameManager gm;
 
 	void Start () {
-		
-		lapString = "Lap " + lap + " / " + maxLaps;
+
+		lapString = "Lap " + lap;
 		gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 		allNPC = GameObject.FindGameObjectsWithTag("NPC");
 		amountOfCars = allNPC.Length + 1;
@@ -35,7 +35,7 @@ public class HUDScript : MonoBehaviour {
 
 	public void LapUpdate () {
 		lap++;
-		lapString = "Lap " + lap + " / " + maxLaps;
+		lapString = "Lap " + lap;
 		TextUpdate();
 	}
 

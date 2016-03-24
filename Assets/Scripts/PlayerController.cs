@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed;
 	public float turnAngle;
-	public float scrollSpeed;
 	public List<WheelCollider> tires;
 	List<GameObject> tireModels;
 	GameObject[] nodes;
@@ -17,12 +16,10 @@ public class PlayerController : MonoBehaviour {
 
 	int nodeIndex;
 
-	//Vector3 playerLastPos;
 	Vector3 playerDeltaPos;
 
 	void Start () {
 		nodes = GameObject.FindGameObjectsWithTag("Node");
-		//playerLastPos = transform.position;
 		rb = GetComponent<Rigidbody>();
 		rb.centerOfMass = centerOfMassEmpty.localPosition;
 
@@ -33,52 +30,17 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
-
 		Controls();
-		if (Input.GetKey(KeyCode.LeftShift)) {
-			speed += Input.mouseScrollDelta.y * scrollSpeed;
-		} else {
-			turnAngle += Input.mouseScrollDelta.y * scrollSpeed;
-		}
 	}
 
 	void Controls () {
-
-		if (Input.GetKey(KeyCode.W)) {
-			for (int i = 0; i < tires.Count; i++) {
-				tires[i].motorTorque = speed * Input.GetAxis("Vertical");
-			}
-		}
-		if (Input.GetKey(KeyCode.S)) {
-			for (int i = 0; i < tires.Count; i++) {
-				tires[i].motorTorque = speed * Input.GetAxis("Vertical");
-			}
+		for (int i = 0; i < tires.Count; i++) {
+			tires[i].motorTorque = speed * Input.GetAxis("Vertical");
 		}
 
-		if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.W)) {
-			for (int i = 0; i < tires.Count; i++) {
-				tires[i].motorTorque = 0;
-			}
-		}
-
-		if (Input.GetKey(KeyCode.A)) {
-			for (int i = 0; i < tires.Count / 2; i++) {
-				tires[i].steerAngle = turnAngle * Input.GetAxis("Horizontal");
-				tireModels[i].transform.localRotation = Quaternion.Euler(0, turnAngle * Input.GetAxis("Horizontal"), 90);
-			}
-		}
-		if (Input.GetKey(KeyCode.D)) {
-			for (int i = 0; i < tires.Count / 2; i++) {
-				tires[i].steerAngle = turnAngle * Input.GetAxis("Horizontal");
-				tireModels[i].transform.localRotation = Quaternion.Euler(0, turnAngle * Input.GetAxis("Horizontal"), 90);
-			}
-		}
-
-		if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D)) {
-			for (int i = 0; i < tires.Count / 2; i++) {
-				tires[i].steerAngle = 0;
-				tireModels[i].transform.localRotation = Quaternion.Euler(0, 0, 90);
-			}
+		for (int i = 0; i < tires.Count / 2; i++) {
+			tires[i].steerAngle = turnAngle * Input.GetAxis("Horizontal");
+			tireModels[i].transform.localRotation = Quaternion.Euler(0, turnAngle * Input.GetAxis("Horizontal"), 90);
 		}
 	}
 	public void PassedNode (Vector3 nodePos) {

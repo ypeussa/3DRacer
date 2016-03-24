@@ -8,8 +8,8 @@ public class CameraScript : MonoBehaviour {
 	public bool posOffsetLocal;
 	public Vector3 cameraPosOffset;
 	public bool lookAtOffsetLocal;
-	public Vector3 cameraLookAtOffset;
-	public float lookSpeed;
+	Vector3 cameraLookAtOffset;
+	public float moveSpeed;
 	public float nodePlayerDiv;
 
 	Vector3 newPos;
@@ -38,17 +38,20 @@ public class CameraScript : MonoBehaviour {
 
 		if (lookAtOffsetLocal) {
 			target = playerT.position + ((nextNodePos - playerT.position).normalized * (nextNodePos - playerT.position).magnitude / nodePlayerDiv);
-			target += (playerT.right * cameraLookAtOffset.x) + (playerT.up * cameraLookAtOffset.y) + (playerT.forward * cameraLookAtOffset.z);
+			//target += (playerT.right * cameraLookAtOffset.x) + (playerT.up * cameraLookAtOffset.y) + (playerT.forward * cameraLookAtOffset.z);
 		} else {
 			// target = point between player and next node + offset
 			target = playerT.position + ((nextNodePos - playerT.position).normalized * (nextNodePos - playerT.position).magnitude / nodePlayerDiv);
-			target += cameraLookAtOffset;
+			//target += cameraLookAtOffset;
 		}
-		
+
+		/*
 		Quaternion targetRot = Quaternion.LookRotation(target - transform.position);
 		transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, lookSpeed * Time.deltaTime);
-		
-		transform.position = newPos;
+		*/
+
+		newPos = (target - playerT.position) + newPos;
+		transform.position = Vector3.Slerp(transform.position, newPos, moveSpeed * Time.deltaTime);
 	}
 
 	public void CameraFollow (bool b) {

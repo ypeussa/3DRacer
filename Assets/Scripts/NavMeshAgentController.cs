@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class NavMeshAgentController : MonoBehaviour {
 
-	public List<Transform> nodes;
+	public float randomNodeOffset;
+
+	List<Transform> nodes;
 	NavMeshAgent agent;
 	int nodeIndex;
 	int currentLap;
@@ -13,13 +15,22 @@ public class NavMeshAgentController : MonoBehaviour {
 	//public bool aheadOfPlayer;
 
 	void Start () {
+		InitializeNodesList();
 		agent = GetComponent<NavMeshAgent>();
 	}
 
+	void InitializeNodesList () {
+		nodes = new List<Transform>();
+		for (int i = 0; i < GameObject.FindGameObjectsWithTag("Node").Length; i++) {
+			string n = "Node" + i;
+			GameObject node = GameObject.Find(n);
+			nodes.Add(node.transform);
+		}
+	}
+
 	public void SetNextPath () {
-		float randomX = Random.Range(0, 5);
+		float randomX = Random.Range(-randomNodeOffset, randomNodeOffset);
 		agent.SetDestination(nodes[nodeIndex].position + (nodes[nodeIndex].right * randomX));
-		//agent.destination = nodes[nodeIndex].position + (nodes[nodeIndex].right * randomX);
 		if (nodeIndex < nodes.Count - 1) {
 			nodeIndex++;
 		} else {
@@ -41,5 +52,12 @@ public class NavMeshAgentController : MonoBehaviour {
 
 	public float GetDistanceToNode () {
 		return Vector3.Distance(transform.position, nodes[nodeIndex].position);
+	}
+
+	// TESTING
+	void OnTriggerEnter (Collider c) {
+		if (c.tag == "Player") {
+			//agent.velocity += c.GetComponent<Rigidbody>().velocity;
+		}
 	}
 }
