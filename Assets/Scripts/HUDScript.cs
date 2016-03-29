@@ -15,6 +15,10 @@ public class HUDScript : MonoBehaviour {
 	public int position = 1;
 	int amountOfCars;
 
+	float currentLapTime;
+	float bestLapTime = Mathf.Infinity;
+	string lapTimeString;
+
 	GameObject[] allNPC;
 
 	GameManager gm;
@@ -30,15 +34,33 @@ public class HUDScript : MonoBehaviour {
 	void Update () {
 		if (gm.gameStart) {
 			//PlayerPositionUpdate();
+			LapTime();
 		}
 	}
 
 	public void LapUpdate () {
 		lap++;
 		lapString = "Lap " + lap;
+		if (currentLapTime < bestLapTime && lap > 1) {
+			bestLapTime = currentLapTime;
+		}
+		currentLapTime = 0;
 		TextUpdate();
 	}
 
+	void LapTime () {
+		currentLapTime += Time.deltaTime;
+		float roundCurrentLapTime = Mathf.Round(currentLapTime * 100) / 100;
+		float roundBestLapTime = Mathf.Round(bestLapTime * 100) / 100;
+		if (lap < 2) {
+			lapTimeString = "Best: ---" + "\nCurrent: " + roundCurrentLapTime;
+		} else {
+			lapTimeString = "Best: " + roundBestLapTime + "\nCurrent: " + roundCurrentLapTime;
+		}
+		TextUpdate();
+	}
+
+	/*
 	public void PlayerPositionUpdate () {
 
 		position = 1;
@@ -69,8 +91,10 @@ public class HUDScript : MonoBehaviour {
 		}
 		TextUpdate();
 	}
+	*/
 
 	void TextUpdate () {
-		hudText.text = lapString + "\n" + positionString;
+		//hudText.text = lapString + "\n" + positionString;
+		hudText.text = lapString + "\n" + lapTimeString;
 	}
 }

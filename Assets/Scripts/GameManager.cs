@@ -32,10 +32,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		nodes = GameObject.FindGameObjectsWithTag("Node");
 		spawns = GameObject.FindGameObjectsWithTag("NPCSpawn");
-		SpawnNPC();
 		mainCam = GameObject.FindGameObjectWithTag("MainCamera");
-		allNPCs = GameObject.FindGameObjectsWithTag("NPC");
-		print(allNPCs.Length + " NPCs");
 	}
 
 	void SpawnNPC () {
@@ -43,15 +40,30 @@ public class GameManager : MonoBehaviour {
 			GameObject npc = null;
 			if (spawnRandomNPC) {
 				int randomIndex = Random.Range(0, npcPrefabs.Count);
+				while (cars[carIndex].GetComponent<IDScript>().id == npcPrefabs[randomIndex].GetComponent<IDScript>().id) {
+					randomIndex = Random.Range(0, npcPrefabs.Count);
+				}
 				npc = (GameObject)Instantiate(npcPrefabs[randomIndex], spawns[i].transform.position, npcPrefabs[randomIndex].transform.rotation);
 			} else {
-				npc = (GameObject)Instantiate(npcPrefabs[i], spawns[i].transform.position, npcPrefabs[i].transform.rotation);
+				if (i > npcPrefabs.Count - 1) {
+					if (cars[carIndex].GetComponent<IDScript>().id != npcPrefabs[i - npcPrefabs.Count].GetComponent<IDScript>().id) { // Ugly code
+						npc = (GameObject)Instantiate(npcPrefabs[i - npcPrefabs.Count], spawns[i].transform.position, npcPrefabs[i - npcPrefabs.Count].transform.rotation);
+					}
+				} else {
+					if (cars[carIndex].GetComponent<IDScript>().id != npcPrefabs[i].GetComponent<IDScript>().id) { // Ugly code
+						npc = (GameObject)Instantiate(npcPrefabs[i], spawns[i].transform.position, npcPrefabs[i].transform.rotation);
+					}
+				}
 			}
-			npc.name = "NPC" + i;
+			if (npc != null) {
+				npc.name = "NPC" + i;
+				npc.transform.SetParent(GameObject.Find("NPCs").transform);
+			}			
 		}
 	}
 
 	void FixedUpdate () {
+		/*
 		if (gameStart) {
 			//Time.timeScale = timeScale;
 			for (int i = 0; i < allNPCs.Length; i++) {
@@ -71,9 +83,12 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 		}
+		*/
 	}
 
 	public void StartGame () {
+		SpawnNPC();
+		allNPCs = GameObject.FindGameObjectsWithTag("NPC");
 		gameStart = true;
 		Instantiate(cars[carIndex], spawnPoint.position, Quaternion.Euler(Vector3.zero));
 		carPicker.SetActive(false);

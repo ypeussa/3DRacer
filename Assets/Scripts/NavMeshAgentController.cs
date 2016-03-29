@@ -5,6 +5,11 @@ using System.Collections.Generic;
 public class NavMeshAgentController : MonoBehaviour {
 
 	public float randomNodeOffset;
+	public float speedChangeInterval;
+	public float intervalMinMaxOffset;
+	float intervalOffset;
+	public Vector2 minMaxSpeed;
+	float speedTimer;
 
 	List<Transform> nodes;
 	NavMeshAgent agent;
@@ -14,9 +19,13 @@ public class NavMeshAgentController : MonoBehaviour {
 	//[HideInInspector]
 	//public bool aheadOfPlayer;
 
-	void Start () {
+	void Awake() {
 		InitializeNodesList();
 		agent = GetComponent<NavMeshAgent>();
+	}
+
+	void Update () {
+		RandomizeSpeed();
 	}
 
 	void InitializeNodesList () {
@@ -25,6 +34,15 @@ public class NavMeshAgentController : MonoBehaviour {
 			string n = "Node" + i;
 			GameObject node = GameObject.Find(n);
 			nodes.Add(node.transform);
+		}
+	}
+
+	void RandomizeSpeed () {
+		speedTimer += Time.deltaTime;
+		if (speedTimer > speedChangeInterval + intervalOffset) {
+			speedTimer = 0;
+			intervalOffset = Random.Range(-intervalMinMaxOffset, intervalMinMaxOffset);
+			agent.speed = Random.Range(minMaxSpeed.x, minMaxSpeed.y);
 		}
 	}
 
