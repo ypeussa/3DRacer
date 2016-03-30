@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -59,6 +60,12 @@ public class GameManager : MonoBehaviour {
 				npc.name = "NPC" + i;
 				npc.transform.SetParent(GameObject.Find("NPCs").transform);
 			}			
+		}
+	}
+
+	void Update () {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			SceneManager.LoadScene("Main");
 		}
 	}
 
