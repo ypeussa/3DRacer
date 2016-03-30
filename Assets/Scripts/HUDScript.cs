@@ -24,7 +24,6 @@ public class HUDScript : MonoBehaviour {
 	GameManager gm;
 
 	void Start () {
-
 		lapString = "Lap " + lap;
 		gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 		allNPC = GameObject.FindGameObjectsWithTag("NPC");
@@ -53,9 +52,9 @@ public class HUDScript : MonoBehaviour {
 		float roundCurrentLapTime = Mathf.Round(currentLapTime * 100) / 100;
 		float roundBestLapTime = Mathf.Round(bestLapTime * 100) / 100;
 		if (lap < 2) {
-			lapTimeString = "Best: ---" + "\nCurrent: " + roundCurrentLapTime;
+			lapTimeString = "<color=lime>Best: ---</color>" + "\n<color=black>Current: " + roundCurrentLapTime + "</color>";
 		} else {
-			lapTimeString = "Best: " + roundBestLapTime + "\nCurrent: " + roundCurrentLapTime;
+			lapTimeString = "<color=lime>Best: " + roundBestLapTime + "</color>\n<color=black>Current: " + roundCurrentLapTime + "</color>";
 		}
 		TextUpdate();
 	}
