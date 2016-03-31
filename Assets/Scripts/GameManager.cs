@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
 	public bool spawnRandomNPC;
 	public List<GameObject> npcPrefabs;
 	GameObject[] spawns;
+	public Text madeBy;
 
 	[HideInInspector]
 	public bool gameStart;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
 		nodes = GameObject.FindGameObjectsWithTag("Node");
 		spawns = GameObject.FindGameObjectsWithTag("NPCSpawn");
 		mainCam = GameObject.FindGameObjectWithTag("MainCamera");
+		madeBy.text = "Made by " + cars[carIndex].name;
 	}
 
 	void SpawnNPC () {
@@ -46,7 +48,8 @@ public class GameManager : MonoBehaviour {
 				}
 				npc = (GameObject)Instantiate(npcPrefabs[randomIndex], spawns[i].transform.position, npcPrefabs[randomIndex].transform.rotation);
 			} else {
-				if (i > npcPrefabs.Count - 1) {
+
+				if (i >= npcPrefabs.Count) {
 					if (cars[carIndex].GetComponent<IDScript>().id != npcPrefabs[i - npcPrefabs.Count].GetComponent<IDScript>().id) { // Ugly code
 						npc = (GameObject)Instantiate(npcPrefabs[i - npcPrefabs.Count], spawns[i].transform.position, npcPrefabs[i - npcPrefabs.Count].transform.rotation);
 					}
@@ -119,6 +122,7 @@ public class GameManager : MonoBehaviour {
 		if (carIndex < cars.Count - 1) {
 			allModels.transform.position += new Vector3(-15, 0, 0);
 			carIndex++;
+			madeBy.text = "Made by " + cars[carIndex].name;
 		}
 	}
 
@@ -126,6 +130,7 @@ public class GameManager : MonoBehaviour {
 		if (carIndex > 0) {
 			carIndex--;
 			allModels.transform.position += new Vector3(15, 0, 0);
+			madeBy.text = "Made by " + cars[carIndex].name;
 		}
 	}
 }

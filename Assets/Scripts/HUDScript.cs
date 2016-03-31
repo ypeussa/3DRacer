@@ -52,9 +52,9 @@ public class HUDScript : MonoBehaviour {
 		float roundCurrentLapTime = Mathf.Round(currentLapTime * 100) / 100;
 		float roundBestLapTime = Mathf.Round(bestLapTime * 100) / 100;
 		if (lap < 2) {
-			lapTimeString = "<color=lime>Best: ---</color>" + "\n<color=black>Current: " + roundCurrentLapTime + "</color>";
+			lapTimeString = "<color=lime>Best: ---</color>" + "\n<color=white>Current: " + roundCurrentLapTime + "</color>";
 		} else {
-			lapTimeString = "<color=lime>Best: " + roundBestLapTime + "</color>\n<color=black>Current: " + roundCurrentLapTime + "</color>";
+			lapTimeString = "<color=lime>Best: " + roundBestLapTime + "</color>\n<color=white>Current: " + roundCurrentLapTime + "</color>";
 		}
 		TextUpdate();
 	}
