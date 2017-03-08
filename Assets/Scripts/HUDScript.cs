@@ -4,7 +4,7 @@ using System.Collections;
 
 public class HUDScript : MonoBehaviour {
 
-	public Text hudText;
+	public Text lapTimeText, countDownText;
 
 	string lapString;
 	string positionString;
@@ -18,23 +18,19 @@ public class HUDScript : MonoBehaviour {
 	float currentLapTime;
 	float bestLapTime = Mathf.Infinity;
 	string lapTimeString;
+    bool updateLapTime = false;
 
 	GameObject[] allNPC;
 
-	GameManager gm;
-
 	void Start () {
 		lapString = "Lap " + lap;
-		gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 		allNPC = GameObject.FindGameObjectsWithTag("NPC");
 		amountOfCars = allNPC.Length + 1;
 	}
 
 	void Update () {
-		if (gm.gameStart) {
-			//PlayerPositionUpdate();
-			LapTime();
-		}
+        if (updateLapTime)
+            LapTime();
 	}
 
 	public void LapUpdate () {
@@ -59,41 +55,11 @@ public class HUDScript : MonoBehaviour {
 		TextUpdate();
 	}
 
-	/*
-	public void PlayerPositionUpdate () {
-
-		position = 1;
-		PlayerController pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-		for (int i = 0; i < allNPC.Length; i++) {
-			NavMeshAgentController agentCont = allNPC[i].GetComponent<NavMeshAgentController>();
-			if (lap < agentCont.GetCurrentLap()) {
-				position++;
-			} else if (pc.GetNodeIndex() < agentCont.GetNodeIndex()) {
-				position++;
-			} else if (pc.GetNodeIndex() == agentCont.GetNodeIndex() && pc.GetDistanceToNode() > agentCont.GetDistanceToNode()) {
-				position++;
-			} else {
-				position--;
-			}
-		}
-
-		position = Mathf.Clamp(position, 1, amountOfCars);
-
-		if (position == 1) {
-			positionString = "" + position + "st";
-		} else if (position == 2) {
-			positionString = "" + position + "nd";
-		} else if (position == 3) {
-			positionString = "" + position + "rd";
-		} else {
-			positionString = "" + position + "th";
-		}
-		TextUpdate();
-	}
-	*/
+    public void StartLapTime() {
+        updateLapTime = true;
+    }
 
 	void TextUpdate () {
-		//hudText.text = lapString + "\n" + positionString;
-		hudText.text = lapString + "\n" + lapTimeString;
+		lapTimeText.text = lapString + "\n" + lapTimeString;
 	}
 }

@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class CameraScript : MonoBehaviour {
 
-	GameObject player;
-
+    public Camera cameraObject;
 	public bool posOffsetLocal;
 	public Vector3 cameraPosOffset;
 	public bool lookAtOffsetLocal;
-	Vector3 cameraLookAtOffset;
 	public float moveSpeed;
 	public float nodePlayerDiv;
 
+	Vector3 cameraLookAtOffset;
+    PlayerController player;
 	Vector3 newPos;
 	Vector3 target;
 
@@ -20,7 +21,19 @@ public class CameraScript : MonoBehaviour {
 
 	bool follow;
 
-	void FixedUpdate () {
+    public void Init(Vector3 position, Quaternion rotation, float gameStartCamSize, PlayerController player) {
+
+        transform.position = position;
+        transform.rotation = rotation;
+        cameraObject.orthographicSize = gameStartCamSize;
+
+        this.player = player;
+        playerT = player.transform;
+        nextNodePos = GameObject.Find("Node0").transform.position;
+        follow = true;
+    }
+
+    void FixedUpdate () {
 		if (follow) {
 			CameraMovement();
 		}
@@ -28,7 +41,7 @@ public class CameraScript : MonoBehaviour {
 
 	void CameraMovement () {
 
-		nextNodePos = player.GetComponent<PlayerController>().GetNextNodePos();
+		nextNodePos = player.GetNextNodePos();
 
 		if (posOffsetLocal) {
 			newPos = playerT.position + (playerT.right * cameraPosOffset.x) + (playerT.up * cameraPosOffset.y) + (playerT.forward * cameraPosOffset.z);
@@ -38,26 +51,11 @@ public class CameraScript : MonoBehaviour {
 
 		if (lookAtOffsetLocal) {
 			target = playerT.position + ((nextNodePos - playerT.position).normalized * (nextNodePos - playerT.position).magnitude / nodePlayerDiv);
-			//target += (playerT.right * cameraLookAtOffset.x) + (playerT.up * cameraLookAtOffset.y) + (playerT.forward * cameraLookAtOffset.z);
 		} else {
-			// target = point between player and next node + offset
 			target = playerT.position + ((nextNodePos - playerT.position).normalized * (nextNodePos - playerT.position).magnitude / nodePlayerDiv);
-			//target += cameraLookAtOffset;
 		}
-
-		/*
-		Quaternion targetRot = Quaternion.LookRotation(target - transform.position);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, lookSpeed * Time.deltaTime);
-		*/
 
 		newPos = (target - playerT.position) + newPos;
 		transform.position = Vector3.Slerp(transform.position, newPos, moveSpeed * Time.deltaTime);
-	}
-
-	public void CameraFollow (bool b) {
-		player = GameObject.FindGameObjectWithTag("Player");
-		playerT = player.transform;
-		nextNodePos = GameObject.Find("Node0").transform.position;
-		follow = b;
 	}
 }

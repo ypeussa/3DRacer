@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class NavMeshAgentController : MonoBehaviour {
@@ -12,16 +11,13 @@ public class NavMeshAgentController : MonoBehaviour {
 	float speedTimer;
 
 	List<Transform> nodes;
-	NavMeshAgent agent;
+	UnityEngine.AI.NavMeshAgent agent;
 	int nodeIndex;
 	int currentLap;
 
-	//[HideInInspector]
-	//public bool aheadOfPlayer;
-
 	void Awake() {
 		InitializeNodesList();
-		agent = GetComponent<NavMeshAgent>();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 	}
 
 	void Update () {
@@ -70,12 +66,5 @@ public class NavMeshAgentController : MonoBehaviour {
 
 	public float GetDistanceToNode () {
 		return Vector3.Distance(transform.position, nodes[nodeIndex].position);
-	}
-
-	// TESTING
-	void OnTriggerEnter (Collider c) {
-		if (c.tag == "Player") {
-			//agent.velocity += c.GetComponent<Rigidbody>().velocity;
-		}
 	}
 }

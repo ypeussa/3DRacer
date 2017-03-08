@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class Debug : MonoBehaviour {
 
@@ -15,10 +14,6 @@ public class Debug : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 		playerStartPos = player.transform.position;
 		rb = player.GetComponent<Rigidbody>();
-	}
-
-	void Update () {
-		
 	}
 
 	public void Reset () {
@@ -36,12 +31,4 @@ public class Debug : MonoBehaviour {
 		lap++;
 		lapText.text = "Lap " + lap;
 	}
-
-	/*
-	void OnTriggerEnter (Collider c) {
-		if (c.transform.parent.tag == "Player" || c.transform.parent.tag == "NPC") {
-			LapCounter();
-		}
-	}
-	*/
 }
