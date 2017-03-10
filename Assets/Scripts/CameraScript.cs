@@ -1,25 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
 public class CameraScript : MonoBehaviour {
-
     public Camera cameraObject;
-	public bool posOffsetLocal;
-	public Vector3 cameraPosOffset;
-	public bool lookAtOffsetLocal;
-	public float moveSpeed;
-	public float nodePlayerDiv;
+    public Vector3 cameraPosOffset;
+    public float moveSpeed;
+    public float nodePlayerDiv;
 
-	Vector3 cameraLookAtOffset;
+    Vector3 cameraLookAtOffset;
     PlayerController player;
-	Vector3 newPos;
-	Vector3 target;
 
-	Vector3 nextNodePos;
-	Transform playerT;
+    Vector3 nextNodePos;
+    Transform playerT;
 
-	bool follow;
+    bool follow;
 
     public void Init(Vector3 position, Quaternion rotation, float gameStartCamSize, PlayerController player) {
 
@@ -33,29 +26,24 @@ public class CameraScript : MonoBehaviour {
         follow = true;
     }
 
-    void FixedUpdate () {
-		if (follow) {
-			CameraMovement();
-		}
-	}
+    void FixedUpdate() {
+        if (follow) {
+            CameraMovement();
+        }
+    }
 
-	void CameraMovement () {
+    void CameraMovement() {
+        nextNodePos = player.GetNextNodePos();
 
-		nextNodePos = player.GetNextNodePos();
+        Vector3 newPos = playerT.position + cameraPosOffset;
 
-		if (posOffsetLocal) {
-			newPos = playerT.position + (playerT.right * cameraPosOffset.x) + (playerT.up * cameraPosOffset.y) + (playerT.forward * cameraPosOffset.z);
-		} else {
-			newPos = playerT.position + cameraPosOffset;
-		}
+        //no lerp
+        //transform.position = newPos;
+        //return;
 
-		if (lookAtOffsetLocal) {
-			target = playerT.position + ((nextNodePos - playerT.position).normalized * (nextNodePos - playerT.position).magnitude / nodePlayerDiv);
-		} else {
-			target = playerT.position + ((nextNodePos - playerT.position).normalized * (nextNodePos - playerT.position).magnitude / nodePlayerDiv);
-		}
+        Vector3 target = playerT.position + ((nextNodePos - playerT.position).normalized * (nextNodePos - playerT.position).magnitude / nodePlayerDiv);
 
-		newPos = (target - playerT.position) + newPos;
-		transform.position = Vector3.Slerp(transform.position, newPos, moveSpeed * Time.deltaTime);
-	}
+        newPos = (target - playerT.position) + newPos;
+        transform.position = Vector3.Slerp(transform.position, newPos, moveSpeed * Time.fixedDeltaTime);
+    }
 }

@@ -3,68 +3,106 @@ using System.Collections.Generic;
 
 public class NavMeshAgentController : MonoBehaviour {
 
-	public float randomNodeOffset;
-	public float speedChangeInterval;
-	public float intervalMinMaxOffset;
-	float intervalOffset;
-	public Vector2 minMaxSpeed;
-	float speedTimer;
+    public float randomNodeOffset;
+    public float lowerSpeedImpactThreshold = 5f;
+    public float disableInputImpactThreshold = 10f;
+    public float rotationLerpSpeed = 3f, positionLerpSpeed = 3f;
 
-	List<Transform> nodes;
-	UnityEngine.AI.NavMeshAgent agent;
-	int nodeIndex;
-	int currentLap;
+    public Vector2 RandomSpeedMultiplierMinMax = new Vector2(0.8f, 1.2f);
 
-	void Awake() {
-		InitializeNodesList();
-		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-	}
+    Rigidbody rb;
+    NodeScript[] nodes;
+    UnityEngine.AI.NavMeshAgent agent;
+    int nodeIndex;
+    int currentLap;
+    float disableTimer, lowerSpeedTimer;
+    float maxSpeed;
+    Vector3 targetPosition;
 
-	void Update () {
-		RandomizeSpeed();
-	}
+    void Awake() {
+        //find and sort nodes
+        nodes = FindObjectsOfType<NodeScript>();
+        System.Array.Sort(nodes, (x, y) => x.nodeIndex - y.nodeIndex);
 
-	void InitializeNodesList () {
-		nodes = new List<Transform>();
-		for (int i = 0; i < GameObject.FindGameObjectsWithTag("Node").Length; i++) {
-			string n = "Node" + i;
-			GameObject node = GameObject.Find(n);
-			nodes.Add(node.transform);
-		}
-	}
+        //get components
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
 
-	void RandomizeSpeed () {
-		speedTimer += Time.deltaTime;
-		if (speedTimer > speedChangeInterval + intervalOffset) {
-			speedTimer = 0;
-			intervalOffset = Random.Range(-intervalMinMaxOffset, intervalMinMaxOffset);
-			agent.speed = Random.Range(minMaxSpeed.x, minMaxSpeed.y);
-		}
-	}
+        agent.updatePosition = false;
+        agent.updateRotation = false;
 
-	public void SetNextPath () {
-		float randomX = Random.Range(-randomNodeOffset, randomNodeOffset);
-		agent.SetDestination(nodes[nodeIndex].position + (nodes[nodeIndex].right * randomX));
-		if (nodeIndex < nodes.Count - 1) {
-			nodeIndex++;
-		} else {
-			nodeIndex = 0;
-		}
-	}
+        float multiplier = Random.Range(RandomSpeedMultiplierMinMax.x, RandomSpeedMultiplierMinMax.y);
+        agent.speed *= multiplier;
+        agent.angularSpeed *= multiplier;
+        agent.acceleration *= multiplier;
+        maxSpeed = agent.speed;
+    }
 
-	public void UpdateLap () {
-		currentLap++;
-	}
+    void FixedUpdate() {
+        //impact timers (lazily in FixedUpdate!)
+        if (disableTimer > 0) {
+            disableTimer -= Time.deltaTime;
 
-	public int GetCurrentLap () {
-		return currentLap;
-	}
+            if (disableTimer <= 0) {
+                agent.speed = maxSpeed;
+                agent.enabled = true;
+                agent.SetDestination(targetPosition);
+            }
+            return;
+        } else if (lowerSpeedTimer > 0) {
+            lowerSpeedTimer -= Time.deltaTime;
 
-	public int GetNodeIndex () {
-		return nodeIndex;
-	}
+            if (lowerSpeedTimer <= 0) {
+                agent.speed = maxSpeed;
+            }
+        }
 
-	public float GetDistanceToNode () {
-		return Vector3.Distance(transform.position, nodes[nodeIndex].position);
-	}
+        rb.MovePosition(Vector3.Lerp(rb.position, agent.nextPosition, positionLerpSpeed));
+
+        if (agent.velocity.magnitude > 0)
+            rb.MoveRotation(Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(agent.desiredVelocity, Vector3.up), Time.deltaTime * rotationLerpSpeed));
+    }
+
+    public void SetNextPath() {
+        float randomX = Random.Range(-randomNodeOffset, randomNodeOffset);
+        targetPosition = nodes[nodeIndex].transform.position + (nodes[nodeIndex].transform.right * randomX);
+
+        if (agent.enabled)
+            agent.SetDestination(targetPosition);
+
+        if (nodeIndex < nodes.Length - 1) {
+            nodeIndex++;
+        } else {
+            nodeIndex = 0;
+        }
+    }
+
+    public void UpdateLap() {
+        currentLap++;
+    }
+
+    public int GetCurrentLap() {
+        return currentLap;
+    }
+
+    public int GetNodeIndex() {
+        return nodeIndex;
+    }
+
+    public float GetDistanceToNode() {
+        return Vector3.Distance(transform.position, nodes[nodeIndex].transform.position);
+    }
+
+    public void OnCollisionEnter(Collision collision) {
+        if (collision.relativeVelocity.magnitude > disableInputImpactThreshold) {
+            lowerSpeedTimer = 0;
+            disableTimer += collision.relativeVelocity.magnitude * 0.1f;
+            agent.enabled = false;
+        } else if (collision.relativeVelocity.magnitude > lowerSpeedImpactThreshold) {
+            lowerSpeedTimer = collision.relativeVelocity.magnitude * 0.7f;
+            agent.speed *= Random.Range(0.2f, 0.5f);
+
+            //print(lowerSpeedTimer);
+        }
+    }
 }

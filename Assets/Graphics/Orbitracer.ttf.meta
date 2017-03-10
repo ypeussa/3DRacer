@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ce034f41f93c4e347894587bb9e434c0
+timeCreated: 1489070520
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Orbit Racer
+  fontNames:
+  - Orbit Racer
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public float timeScale;
     public Text madeBy;
 
+    Vector3 carModelsParentStartPosition;
     int selectedCarIndex;
     CameraScript mainCam;
     Vector3 selectionCarPositionOffset = new Vector3(15, 0, 0);
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
         spawns = GameObject.FindGameObjectsWithTag("NPCSpawn");
         mainCam = FindObjectOfType<CameraScript>();
 
+        carModelsParentStartPosition = carModelsParent.transform.position;
         CreateSelectionCarModels();
 
         UpdateMadeByText();
@@ -48,12 +50,12 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void CreateAICars() {
+    void CreateAICars(int skipCarIndex) {
         var npcParent = GameObject.Find("NPCs").transform;
         AICars = new List<NavMeshAgentController>();
 
         for (int i = 0; i < spawns.Length; i++) {
-            if (i < AICarPrefabs.Count) {
+            if (i < AICarPrefabs.Count && i != skipCarIndex) {
                 var npc = Instantiate(AICarPrefabs[i], spawns[i].transform.position, AICarPrefabs[i].transform.rotation);
                 npc.name = "NPC" + i;
                 npc.transform.SetParent(npcParent);
@@ -68,7 +70,7 @@ public class GameManager : MonoBehaviour {
         carModelsParent.gameObject.SetActive(false);
 
         //spawn AI cars and the player car
-        CreateAICars();
+        CreateAICars(selectedCarIndex);
         player = Instantiate(playerCarPrefabs[selectedCarIndex], spawnPoint.position, Quaternion.identity);
 
         //camera setup
@@ -79,25 +81,29 @@ public class GameManager : MonoBehaviour {
             nodes[i].Init(player);
         }
 
-        //AI car init
-        for (int i = 0; i < AICars.Count; i++) {
-            AICars[i].SetNextPath();
-        }
-
-        HUD.StartLapTime();
-
+        player.enabled = false;
         StartCoroutine(CountDownCoroutine());
     }
 
     private IEnumerator CountDownCoroutine() {
+        var countDownWait = new WaitForSeconds(0.8f);
 
-        yield return new WaitForSeconds(1f);
+        HUD.SetCountdownText("3");
+        yield return countDownWait;
+        HUD.SetCountdownText("2");
+        yield return countDownWait;
+        HUD.SetCountdownText("1");
+        yield return countDownWait;
+        HUD.SetCountdownText("GO!");
+        HUD.StartLap();
+        player.enabled = true;
+        yield return countDownWait;
+        HUD.SetCountdownText("");
 
-        yield return new WaitForSeconds(1f);
-
-        yield return new WaitForSeconds(1f);
-
-
+        //start AI cars
+        for (int i = 0; i < AICars.Count; i++) {
+            AICars[i].SetNextPath();
+        }
     }
 
     //input 
@@ -109,24 +115,46 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }
+        //selection menu input
+        if (carSelectionMenu.activeSelf) {
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                StartGame();
+            }
+
+            //using axis for controller support
+
+            float horizontalAxis = Input.GetAxisRaw("Horizontal");
+
+            if (horizontalAxis != 0 && selectionInputTimer < Time.time) {
+                if (horizontalAxis > 0) SelectNextCar();
+                else SelectPreviousCar();
+
+                selectionInputTimer = Time.time + 0.3f;
+            } else if (horizontalAxis == 0)
+                selectionInputTimer = 0;
+        }
     }
+
+    float selectionInputTimer;
 
     //selection menu events
 
-    public void Next() {
-        if (selectedCarIndex < selectionMenuCars.Count - 1) {
-            carModelsParent.transform.position -= selectionCarPositionOffset;
-            selectedCarIndex++;
-            UpdateMadeByText();
-        }
+    public void SelectNextCar() {
+        selectedCarIndex++;
+        if (selectedCarIndex == selectionMenuCars.Count)
+            selectedCarIndex = 0;
+
+        carModelsParent.transform.position = carModelsParentStartPosition - selectionCarPositionOffset * selectedCarIndex;
+        UpdateMadeByText();
     }
 
-    public void Previous() {
-        if (selectedCarIndex > 0) {
-            selectedCarIndex--;
-            carModelsParent.transform.position += selectionCarPositionOffset;
-            UpdateMadeByText();
-        }
+    public void SelectPreviousCar() {
+        selectedCarIndex--;
+        if (selectedCarIndex < 0)
+            selectedCarIndex = selectionMenuCars.Count - 1;
+
+        carModelsParent.transform.position = carModelsParentStartPosition - selectionCarPositionOffset * selectedCarIndex;
+        UpdateMadeByText();
     }
 
     private void UpdateMadeByText() {
