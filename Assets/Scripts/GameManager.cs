@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
     GameObject[] spawns;
     PlayerController player;
 
+    public int DEBUG_AmountOfNPCCars = 1000;
+
     public bool gameStart { get; private set; }
 
     void Start() {
@@ -55,6 +57,11 @@ public class GameManager : MonoBehaviour {
         AICars = new List<NavMeshAgentController>();
 
         for (int i = 0; i < spawns.Length; i++) {
+#if UNITY_EDITOR
+            if (i == DEBUG_AmountOfNPCCars) break;
+#endif
+
+
             if (i < AICarPrefabs.Count && i != skipCarIndex) {
                 var npc = Instantiate(AICarPrefabs[i], spawns[i].transform.position, AICarPrefabs[i].transform.rotation);
                 npc.name = "NPC" + i;

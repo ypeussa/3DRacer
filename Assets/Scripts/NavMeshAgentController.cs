@@ -99,10 +99,8 @@ public class NavMeshAgentController : MonoBehaviour {
             disableTimer += collision.relativeVelocity.magnitude * 0.1f;
             agent.enabled = false;
         } else if (collision.relativeVelocity.magnitude > lowerSpeedImpactThreshold) {
-            lowerSpeedTimer = collision.relativeVelocity.magnitude * 0.7f;
+            lowerSpeedTimer = collision.relativeVelocity.magnitude * 0.5f;
             agent.speed *= Random.Range(0.2f, 0.5f);
-
-            //print(lowerSpeedTimer);
         }
     }
 }
