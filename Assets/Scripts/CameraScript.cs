@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
-    public Camera cameraObject;
+    public Camera topDownCamera, firstPersonCamera;
     public Vector3 cameraPosOffset;
     public float moveSpeed;
     public float nodePlayerDiv;
@@ -18,7 +18,7 @@ public class CameraScript : MonoBehaviour {
 
         transform.position = position;
         transform.rotation = rotation;
-        cameraObject.orthographicSize = gameStartCamSize;
+        topDownCamera.orthographicSize = gameStartCamSize;
 
         this.player = player;
         playerT = player.transform;
@@ -29,6 +29,26 @@ public class CameraScript : MonoBehaviour {
     void FixedUpdate() {
         if (follow) {
             CameraMovement();
+        }
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.C)) {
+            if (topDownCamera.gameObject.activeSelf) {
+                topDownCamera.gameObject.SetActive(false);
+                firstPersonCamera.gameObject.SetActive(true);
+
+                firstPersonCamera.transform.SetParent(player.firstPersonCameraPosition, false);
+                firstPersonCamera.transform.localPosition = Vector3.zero;
+                firstPersonCamera.transform.localRotation = Quaternion.identity;
+
+            } else {
+                topDownCamera.gameObject.SetActive(true);
+                firstPersonCamera.gameObject.SetActive(false);
+
+                firstPersonCamera.transform.parent = transform;
+            }
+               
         }
     }
 

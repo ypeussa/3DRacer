@@ -4,16 +4,16 @@ using System;
 
 public class PlayerController : MonoBehaviour {
     public string CarDeveloperName = "Nobody";
-    public float speed;
+    public float acceleration;
     public float turnAngle;
     public List<WheelCollider> tires;
     public Transform centerOfMassEmpty;
+    public Transform firstPersonCameraPosition;
 
     List<GameObject> tireModels;
     GameObject[] nodes;
     Vector3 nextNodePos;
     Rigidbody rb;
-    Vector3 playerDeltaPos;
 
     int nodeIndex;
 
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         //input acceleration
         for (int i = 0; i < tires.Count; i++) {
-            tires[i].motorTorque = speed * Input.GetAxis("Vertical");
+            tires[i].motorTorque = acceleration * Input.GetAxis("Vertical");
         }
 
         //input turning

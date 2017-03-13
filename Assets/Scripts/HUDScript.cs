@@ -4,27 +4,19 @@ using UnityEngine.UI;
 public class HUDScript : MonoBehaviour {
 
     public Text lapTimeText, countDownText;
+    public int lap;
+    public int maxLaps;
+    public int position = 1;
 
     string lapString;
     string positionString;
-
-    public int lap;
-    public int maxLaps;
-
-    public int position = 1;
-    int amountOfCars;
-
     float currentLapTime;
     float bestLapTime = Mathf.Infinity;
     string lapTimeString;
     bool updateLapTime = false;
 
-    GameObject[] allNPC;
-
     void Start() {
         lapString = "Lap " + lap;
-        allNPC = GameObject.FindGameObjectsWithTag("NPC");
-        amountOfCars = allNPC.Length + 1;
     }
 
     void Update() {

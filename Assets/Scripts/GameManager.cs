@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
     GameObject[] spawns;
     PlayerController player;
 
-    public int DEBUG_AmountOfNPCCars = 1000;
+    public int DEBUG_AmountOfAICars = 1000;
 
     public bool gameStart { get; private set; }
 
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
 
         for (int i = 0; i < spawns.Length; i++) {
 #if UNITY_EDITOR
-            if (i == DEBUG_AmountOfNPCCars) break;
+            if (i == DEBUG_AmountOfAICars) break;
 #endif
 
 
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour {
 
         //start AI cars
         for (int i = 0; i < AICars.Count; i++) {
-            AICars[i].SetNextPath();
+            AICars[i].StartMoving();
         }
     }
 

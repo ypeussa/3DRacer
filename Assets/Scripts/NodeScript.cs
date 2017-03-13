@@ -23,7 +23,6 @@ public class NodeScript : MonoBehaviour {
         }
 
         if (c.tag == "NPC") {
-            c.GetComponent<NavMeshAgentController>().SetNextPath();
             if (nodeIndex == 0) {
                 c.GetComponent<NavMeshAgentController>().UpdateLap();
             }
