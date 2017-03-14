@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 462288}
   - component: {fileID: 3383716}
   - component: {fileID: 2354730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChamferCyl001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ GameObject:
   m_Component:
   - component: {fileID: 458974}
   - component: {fileID: 14628658}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 432464}
   - component: {fileID: 9532010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TaruFinal Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 496456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CenterOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 473644}
   - component: {fileID: 3376954}
   - component: {fileID: 2344728}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 461512}
   - component: {fileID: 14605560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 463512}
   - component: {fileID: 3302496}
   - component: {fileID: 2315518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChamferCyl001 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 493018}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 432320}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 437018}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 406508}
   - component: {fileID: 14629444}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 434940}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 448094}
   - component: {fileID: 14664394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 470620}
   - component: {fileID: 3336086}
   - component: {fileID: 2331676}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChamferCyl001 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 6590976}
   - component: {fileID: 208248050618738052}
   - component: {fileID: 114231872259808500}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PLAYER - Taru
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 409788}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 437500}
   - component: {fileID: 3343686}
   - component: {fileID: 2316896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChamferCyl001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

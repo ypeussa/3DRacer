@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 465578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirstPersonCameraPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ GameObject:
   m_Component:
   - component: {fileID: 466960}
   - component: {fileID: 14611140}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 491380}
   - component: {fileID: 3327156}
   - component: {fileID: 2383864}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wheel01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 412880}
   - component: {fileID: 3351324}
   - component: {fileID: 2316810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Object003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 6540076}
   - component: {fileID: 208119648202156044}
   - component: {fileID: 114856851736809720}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PLAYER - Andrei
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 462938}
   - component: {fileID: 3350368}
   - component: {fileID: 2337768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wheel002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 433812}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 486874}
   - component: {fileID: 3306070}
   - component: {fileID: 2324798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Object004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 494646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 449864}
   - component: {fileID: 14607740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 424458}
   - component: {fileID: 3355100}
   - component: {fileID: 2381546}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Line001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 424780}
   - component: {fileID: 3339556}
   - component: {fileID: 2398976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Object005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 463070}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 477704}
   - component: {fileID: 14697638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 411954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 489874}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AndreiCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 434962}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 444794}
   - component: {fileID: 14626614}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +953,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4804349207821984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CenterOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -971,7 +971,7 @@ GameObject:
   - component: {fileID: 199925393443400772}
   - component: {fileID: 198435684019157704}
   - component: {fileID: 114878943452179056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skidmarks (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -989,7 +989,7 @@ GameObject:
   - component: {fileID: 199295352748597154}
   - component: {fileID: 198000904722130592}
   - component: {fileID: 114306247821945898}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skidmarks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

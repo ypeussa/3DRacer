@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - component: {fileID: 463416}
   - component: {fileID: 9517252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TaruFinal Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 432714}
   - component: {fileID: 3304248}
   - component: {fileID: 2355696}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 11440012}
   - component: {fileID: 5410538}
   - component: {fileID: 6569016}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NPC - Taru
   m_TagString: NPC
   m_Icon: {fileID: -3545028842045912814, guid: 0000000000000000d000000000000000, type: 0}
@@ -59,7 +59,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 474416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NPCModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 480682}
   - component: {fileID: 3385242}
   - component: {fileID: 2311604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChamferCyl001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 483222}
   - component: {fileID: 3373486}
   - component: {fileID: 2395732}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChamferCyl001 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 451932}
   - component: {fileID: 3397628}
   - component: {fileID: 2319312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChamferCyl001 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 469582}
   - component: {fileID: 3326406}
   - component: {fileID: 2306984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChamferCyl001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,10 +445,10 @@ Rigidbody:
   m_Mass: 1000
   m_Drag: 0.1
   m_AngularDrag: 0.1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!65 &6569016
 BoxCollider:
@@ -490,13 +490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ae9ba5c06acb443ba135f15473feac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
-  angularSpeed: 3
-  acceleration: 2
-  RandomSpeedMultiplierMinMax: {x: 0.8, y: 1.2}
-  lowerSpeedImpactThreshold: 2
-  disableInputImpactThreshold: 15
-  randomNodePositionOffset: 0
+  AccelerationMultiplierMinMax: {x: 0.8, y: 1.2}
+  decreaseAccelerationOnImpactThreshold: 2
+  disableInputOnImpactThreshold: 10
   PathRefreshInterval: 0.5
 --- !u!1001 &100100000
 Prefab:

@@ -37,7 +37,6 @@ public class CarController : MonoBehaviour
         {
             tires[i].steerAngle = maxTurnAngle * turnAxis;
             var euler = tireModels[i].transform.localRotation.eulerAngles;
-            print(euler);
             if (euler.z == 180 && euler.y != 0) euler.x = 180 - euler.x;//weird fix for a weird problem
             tireModels[i].transform.localRotation = Quaternion.Euler(euler.x, maxTurnAngle * turnAxis, 0);
         }

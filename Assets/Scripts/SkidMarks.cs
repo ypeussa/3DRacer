@@ -2,12 +2,16 @@
 
 public class SkidMarks : MonoBehaviour {
 
-    public Rigidbody rb;
     public ParticleSystem ps;
     [Range(0, 1f)]
     public float skidMarkThreshold = 0.99f;
     public float skidmarkDuration = 0.25f;
     float skidmarkTimer;
+    Rigidbody rb;
+
+    private void Awake() {
+        rb = GetComponentInParent<Rigidbody>();
+    }
 
     void Update() {
         float dot = Vector3.Dot(rb.velocity.normalized, transform.forward);

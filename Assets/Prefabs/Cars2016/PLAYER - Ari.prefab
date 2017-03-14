@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 425378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 492522}
   - component: {fileID: 3398726}
   - component: {fileID: 2399370}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ArisCar2016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 428594}
   - component: {fileID: 3389580}
   - component: {fileID: 2325590}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 6580712}
   - component: {fileID: 208156235969376910}
   - component: {fileID: 114493424306570574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PLAYER - Ari
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 438162}
   - component: {fileID: 14664976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 434150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 478764}
   - component: {fileID: 3335224}
   - component: {fileID: 2388722}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 401790}
   - component: {fileID: 14691578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 461238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CenterOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 487310}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 407818}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 494416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 486006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fspot001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 468620}
   - component: {fileID: 14630436}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 463048}
   - component: {fileID: 14645980}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 442880}
   - component: {fileID: 9554234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Aris_horrible_car_2016
   m_TagString: Untagged
   m_Icon: {fileID: 0}

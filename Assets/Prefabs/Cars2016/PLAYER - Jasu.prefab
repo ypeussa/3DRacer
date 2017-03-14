@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 452790}
   - component: {fileID: 3312214}
   - component: {fileID: 2392716}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 469110}
   - component: {fileID: 3391964}
   - component: {fileID: 2311652}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 462618}
   - component: {fileID: 3317888}
   - component: {fileID: 2367800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: stoplights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 426380}
   - component: {fileID: 3382058}
   - component: {fileID: 2374410}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   m_Component:
   - component: {fileID: 456350}
   - component: {fileID: 14629546}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 483946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 486490}
   - component: {fileID: 3379690}
   - component: {fileID: 2318942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 449088}
   - component: {fileID: 3384900}
   - component: {fileID: 2323168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tube001 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 473222}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JasuCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 432848}
   - component: {fileID: 14680824}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 456120}
   - component: {fileID: 3399370}
   - component: {fileID: 2383352}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 477498}
   - component: {fileID: 3363848}
   - component: {fileID: 2329600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Line001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 415162}
   - component: {fileID: 3367602}
   - component: {fileID: 2369458}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tube001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 412840}
   - component: {fileID: 14686796}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 443014}
   - component: {fileID: 3330194}
   - component: {fileID: 2332300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tube001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 436560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 494984}
   - component: {fileID: 3337656}
   - component: {fileID: 2301774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: headlamps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 454110}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 6506600}
   - component: {fileID: 208527696947371080}
   - component: {fileID: 114380619882911142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PLAYER - Jasu
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 457812}
   - component: {fileID: 14668800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 420490}
   - component: {fileID: 3378548}
   - component: {fileID: 2305114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Object001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 408832}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 418280}
   - component: {fileID: 3367822}
   - component: {fileID: 2362876}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tube001 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 457212}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 426336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CenterOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 455984}
   - component: {fileID: 3367910}
   - component: {fileID: 2356410}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

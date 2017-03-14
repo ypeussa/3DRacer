@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 420174}
   - component: {fileID: 3368926}
   - component: {fileID: 2376800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Line001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 465740}
   - component: {fileID: 3337046}
   - component: {fileID: 2327158}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 436642}
   - component: {fileID: 3322344}
   - component: {fileID: 2385272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle001 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 11466564}
   - component: {fileID: 5462364}
   - component: {fileID: 6533200}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NPC - Tomas
   m_TagString: NPC
   m_Icon: {fileID: -3545028842045912814, guid: 0000000000000000d000000000000000, type: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 423056}
   - component: {fileID: 3382566}
   - component: {fileID: 2340044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle001 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 429250}
   - component: {fileID: 3338598}
   - component: {fileID: 2384028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 418890}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NPCModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 457416}
   - component: {fileID: 9503098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TomasLadaNiva01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,10 +445,10 @@ Rigidbody:
   m_Mass: 1000
   m_Drag: 0.1
   m_AngularDrag: 0.1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!65 &6533200
 BoxCollider:
@@ -490,13 +490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ae9ba5c06acb443ba135f15473feac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
-  angularSpeed: 3
-  acceleration: 2
-  RandomSpeedMultiplierMinMax: {x: 0.8, y: 1.2}
-  lowerSpeedImpactThreshold: 2
-  disableInputImpactThreshold: 15
-  randomNodePositionOffset: 0
+  AccelerationMultiplierMinMax: {x: 0.8, y: 1.2}
+  decreaseAccelerationOnImpactThreshold: 2
+  disableInputOnImpactThreshold: 10
   PathRefreshInterval: 0.5
 --- !u!1001 &100100000
 Prefab:

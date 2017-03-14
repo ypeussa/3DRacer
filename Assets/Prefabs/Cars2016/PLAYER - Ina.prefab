@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 405278}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,7 +23,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 439366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: racingcar_minicooper_inapylkko
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 481876}
   - component: {fileID: 14634486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 449486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 404984}
   - component: {fileID: 3350480}
   - component: {fileID: 2320670}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tire lp (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 481870}
   - component: {fileID: 3364124}
   - component: {fileID: 2385896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tire lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 444150}
   - component: {fileID: 3376778}
   - component: {fileID: 2374068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: racing_car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 449958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirstPersonCameraPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 496686}
   - component: {fileID: 14636144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Back Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 436022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 431046}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 457140}
   - component: {fileID: 3386154}
   - component: {fileID: 2327738}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tire lp (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 430986}
   - component: {fileID: 3353114}
   - component: {fileID: 2392520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tire lp (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 6548618}
   - component: {fileID: 208624117598293352}
   - component: {fileID: 114642734651104862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PLAYER - Ina
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 408968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 433456}
   - component: {fileID: 14601576}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 416380}
   - component: {fileID: 14697076}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire Front Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76, y: 0, z: 1.558}
+  m_LocalPosition: {x: -0.76, y: 0.324, z: 1.558}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 408968}
@@ -363,7 +363,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.76, y: 0, z: 1.558}
+  m_LocalPosition: {x: 0.76, y: 0.324, z: 1.558}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 449486}
@@ -377,7 +377,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.324, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 439366}
@@ -432,7 +432,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125128}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.93, z: 1.1}
+  m_LocalPosition: {x: 0, y: 1.254, z: 1.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 464200}
@@ -458,7 +458,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.387726, y: 0.403, z: 0.55583954}
+  m_LocalPosition: {x: 34.61, y: 0, z: -8.495375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4568950409043562}
@@ -491,7 +491,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76, y: 0, z: -1.325}
+  m_LocalPosition: {x: -0.76, y: 0.324, z: -1.325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 431046}
@@ -505,7 +505,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.76, y: 0, z: -1.325}
+  m_LocalPosition: {x: 0.76, y: 0.324, z: -1.325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 405278}
@@ -877,7 +877,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4568950409043562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CenterOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -891,7 +891,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962026208164668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.324, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 464200}
