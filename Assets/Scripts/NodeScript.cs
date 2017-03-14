@@ -15,16 +15,10 @@ public class NodeScript : MonoBehaviour {
     void OnTriggerEnter(Collider c) {
         if (c.tag == "Player") {
             if (player.GetNodeIndex() == nodeIndex) {
-                player.PassedNode(secondNode.transform.position);
+                player.PassNode(secondNode.transform.position);
                 if (nodeIndex == 0) {
                     hudS.RecordLap();
                 }
-            }
-        }
-
-        if (c.tag == "NPC") {
-            if (nodeIndex == 0) {
-                c.GetComponent<NavMeshAgentController>().UpdateLap();
             }
         }
     }

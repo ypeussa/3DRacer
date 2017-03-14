@@ -20,7 +20,6 @@ public class NavMeshAgentController : MonoBehaviour {
     Rigidbody rb;
     NodeScript[] nodes;
     int nodeIndex;
-    int currentLap;
     float disableTimer, lowerSpeedTimer;
     float maxSpeed;
     Vector3 targetPosition;
@@ -113,22 +112,6 @@ public class NavMeshAgentController : MonoBehaviour {
         } else {
             nodeIndex = 0;
         }
-    }
-
-    public void UpdateLap() {
-        currentLap++;
-    }
-
-    public int GetCurrentLap() {
-        return currentLap;
-    }
-
-    public int GetNodeIndex() {
-        return nodeIndex;
-    }
-
-    public float GetDistanceToNode() {
-        return Vector3.Distance(transform.position, nodes[nodeIndex].transform.position);
     }
 
     public void StartMoving() {

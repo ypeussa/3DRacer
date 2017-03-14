@@ -1,49 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
 
+[RequireComponent(typeof(CarController))]
 public class PlayerController : MonoBehaviour {
     public string CarDeveloperName = "Nobody";
-    public float acceleration;
-    public float turnAngle;
-    public List<WheelCollider> tires;
-    public Transform centerOfMassEmpty;
     public Transform firstPersonCameraPosition;
 
-    List<GameObject> tireModels;
+    CarController carController;
     GameObject[] nodes;
     Vector3 nextNodePos;
-    Rigidbody rb;
-
     int nodeIndex;
 
     void Awake() {
-        rb = GetComponent<Rigidbody>();
-        rb.centerOfMass = centerOfMassEmpty.localPosition;
+        carController = GetComponent <CarController>();
     }
 
     void Start() {
         nodes = GameObject.FindGameObjectsWithTag("Node");
-        tireModels = new List<GameObject>();
-        for (int i = 0; i < tires.Count; i++) {
-            tireModels.Add(tires[i].transform.Find("Tire Model").gameObject);
-        }
     }
 
     void Update() {
-        //input acceleration
-        for (int i = 0; i < tires.Count; i++) {
-            tires[i].motorTorque = acceleration * Input.GetAxis("Vertical");
-        }
+        float verticalAxis = Input.GetAxis("Vertical");
+        float horizontalAxis = Input.GetAxis("Horizontal");
 
-        //input turning
-        for (int i = 0; i < tires.Count / 2; i++) {
-            tires[i].steerAngle = turnAngle * Input.GetAxis("Horizontal");
-            tireModels[i].transform.localRotation = Quaternion.Euler(0, turnAngle * Input.GetAxis("Horizontal"), 90);
-        }
+        carController.Accelerate(verticalAxis);
+        carController.Turn(horizontalAxis);
     }
 
-    public void PassedNode(Vector3 nextNodePosition) {
+    public void PassNode(Vector3 nextNodePosition) {
         if (nodeIndex < nodes.Length - 1) {
             nodeIndex++;
         } else {
@@ -57,7 +41,7 @@ public class PlayerController : MonoBehaviour {
         transform.rotation = rotation;
 
         enabled = false;
-        rb.useGravity = false;
+        GetComponent<Rigidbody>().useGravity = false;
         gameObject.layer = LayerMask.NameToLayer("UI");
 
         var children = transform.GetComponentsInChildren<Transform>();
