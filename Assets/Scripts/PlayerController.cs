@@ -1,22 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
-[RequireComponent(typeof(CarController))]
+[RequireComponent(typeof(CarMovement))]
+[RequireComponent(typeof(CarLapSystem))]
 public class PlayerController : MonoBehaviour {
-    public string CarDeveloperName = "Nobody";
     public Transform firstPersonCameraPosition;
 
-    CarController carController;
-    GameObject[] nodes;
-    Vector3 nextNodePos;
-    int nodeIndex;
+    public CarLapSystem lapSystem { get; private set; }
+    CarMovement carController;
 
     void Awake() {
-        carController = GetComponent <CarController>();
-    }
-
-    void Start() {
-        nodes = GameObject.FindGameObjectsWithTag("Node");
+        carController = GetComponent <CarMovement>();
+        lapSystem = GetComponent<CarLapSystem>();
     }
 
     void Update() {
@@ -25,15 +19,6 @@ public class PlayerController : MonoBehaviour {
 
         carController.Accelerate(verticalAxis);
         carController.Turn(horizontalAxis);
-    }
-
-    public void PassNode(Vector3 nextNodePosition) {
-        if (nodeIndex < nodes.Length - 1) {
-            nodeIndex++;
-        } else {
-            nodeIndex = 0;
-        }
-        nextNodePos = nextNodePosition;
     }
 
     public void SetAsSelectionMenuCar(Vector3 position, Quaternion rotation) {
@@ -51,11 +36,4 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public Vector3 GetNextNodePos() {
-        return nextNodePos;
-    }
-
-    public int GetNodeIndex() {
-        return nodeIndex;
-    }
 }

@@ -6,12 +6,9 @@ public class CameraScript : MonoBehaviour {
     public float moveSpeed;
     public float nodePlayerDiv;
 
-    Vector3 cameraLookAtOffset;
     PlayerController player;
-
     Vector3 nextNodePos;
     Transform playerT;
-
     bool follow;
 
     public void Init(Vector3 position, Quaternion rotation, float gameStartCamSize, PlayerController player) {
@@ -22,7 +19,6 @@ public class CameraScript : MonoBehaviour {
 
         this.player = player;
         playerT = player.transform;
-        nextNodePos = GameObject.Find("Node0").transform.position;
         follow = true;
     }
 
@@ -53,13 +49,8 @@ public class CameraScript : MonoBehaviour {
     }
 
     void CameraMovement() {
-        nextNodePos = player.GetNextNodePos();
-
+        nextNodePos = player.lapSystem.GetNextNodePos();
         Vector3 newPos = playerT.position + cameraPosOffset;
-
-        //no lerp
-        //transform.position = newPos;
-        //return;
 
         Vector3 target = playerT.position + ((nextNodePos - playerT.position).normalized * (nextNodePos - playerT.position).magnitude / nodePlayerDiv);
 

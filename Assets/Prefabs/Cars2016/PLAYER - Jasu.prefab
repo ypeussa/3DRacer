@@ -308,6 +308,8 @@ GameObject:
   - component: {fileID: 6506600}
   - component: {fileID: 208527696947371080}
   - component: {fileID: 114380619882911142}
+  - component: {fileID: 114527782100933240}
+  - component: {fileID: 114637800509787570}
   m_Layer: 8
   m_Name: PLAYER - Jasu
   m_TagString: Player
@@ -1360,7 +1362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fe7e09f513f2e488d99e993e12ed5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarDeveloperName: Jasu
   firstPersonCameraPosition: {fileID: 0}
 --- !u!146 &14629546
 WheelCollider:
@@ -1516,6 +1517,34 @@ MonoBehaviour:
   - {fileID: 14680824}
   - {fileID: 14668800}
   centerOfMass: {fileID: 426336}
+--- !u!114 &114527782100933240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f896022a428a64e811e0855c30f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLapRecordEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CarLapSystemEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114637800509787570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e79c8b952dcc74d8b44476b3140b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarDeveloperName: Nobody
 --- !u!208 &208527696947371080
 NavMeshObstacle:
   m_ObjectHideFlags: 1

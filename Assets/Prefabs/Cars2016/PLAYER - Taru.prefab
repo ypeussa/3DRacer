@@ -236,6 +236,8 @@ GameObject:
   - component: {fileID: 6590976}
   - component: {fileID: 208248050618738052}
   - component: {fileID: 114231872259808500}
+  - component: {fileID: 114411008002034574}
+  - component: {fileID: 114847915287505690}
   m_Layer: 8
   m_Name: PLAYER - Taru
   m_TagString: Player
@@ -757,7 +759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fe7e09f513f2e488d99e993e12ed5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarDeveloperName: Taru
   firstPersonCameraPosition: {fileID: 0}
 --- !u!146 &14605560
 WheelCollider:
@@ -909,6 +910,34 @@ MonoBehaviour:
   - {fileID: 14629444}
   - {fileID: 14605560}
   centerOfMass: {fileID: 496456}
+--- !u!114 &114411008002034574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f896022a428a64e811e0855c30f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLapRecordEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CarLapSystemEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114847915287505690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e79c8b952dcc74d8b44476b3140b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarDeveloperName: Nobody
 --- !u!208 &208248050618738052
 NavMeshObstacle:
   m_ObjectHideFlags: 1

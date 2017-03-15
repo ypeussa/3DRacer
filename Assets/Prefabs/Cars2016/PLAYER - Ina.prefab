@@ -220,6 +220,8 @@ GameObject:
   - component: {fileID: 6548618}
   - component: {fileID: 208624117598293352}
   - component: {fileID: 114642734651104862}
+  - component: {fileID: 114972041477814926}
+  - component: {fileID: 114465980346738512}
   m_Layer: 8
   m_Name: PLAYER - Ina
   m_TagString: Player
@@ -740,7 +742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fe7e09f513f2e488d99e993e12ed5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarDeveloperName: Ina
   firstPersonCameraPosition: {fileID: 449958}
 --- !u!146 &14601576
 WheelCollider:
@@ -897,6 +898,18 @@ Transform:
   m_Father: {fileID: 464200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114465980346738512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e79c8b952dcc74d8b44476b3140b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarDeveloperName: Nobody
 --- !u!114 &114642734651104862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -916,6 +929,22 @@ MonoBehaviour:
   - {fileID: 14636144}
   - {fileID: 14634486}
   centerOfMass: {fileID: 4568950409043562}
+--- !u!114 &114972041477814926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f896022a428a64e811e0855c30f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLapRecordEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CarLapSystemEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!208 &208624117598293352
 NavMeshObstacle:
   m_ObjectHideFlags: 1

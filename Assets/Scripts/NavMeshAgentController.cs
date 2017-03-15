@@ -5,18 +5,17 @@ using UnityEngine.AI;
 /// Unity navmesh agent runs in update. We have to use fixed update for smooth movement as the player car and the camera both use it as well.
 /// This required a bit of wrangling.
 /// </summary>
-[RequireComponent(typeof(CarController))]
+[RequireComponent(typeof(CarMovement))]
+[RequireComponent(typeof(CarLapSystem))]
 public class NavMeshAgentController : MonoBehaviour {
-    public Vector2 AccelerationMultiplierMinMax = new Vector2(0.7f, 1f);
-
     public float decreaseAccelerationOnImpactThreshold = 2f;
     public float disableInputOnImpactThreshold = 10f;
     public float PathRefreshInterval = 1f;
 
-    CarController carController;
+    public CarLapSystem lapSystem { get; private set; }
+    CarMovement carController;
     Rigidbody rb;
-    NodeScript[] nodes;
-    int nodeIndex;
+    public int nodeIndex;
     float disableTimer, lowerSpeedTimer;
     float maxAcceleration;
     Vector3 targetPosition;
@@ -27,16 +26,15 @@ public class NavMeshAgentController : MonoBehaviour {
     bool reverse = false;
 
     void Awake() {
-        //find and sort nodes
-        nodes = FindObjectsOfType<NodeScript>();
-        System.Array.Sort(nodes, (x, y) => x.nodeIndex - y.nodeIndex);
-
         //get components
         rb = GetComponent<Rigidbody>();
-        carController = GetComponent<CarController>();
+        carController = GetComponent<CarMovement>();
+        lapSystem = GetComponent<CarLapSystem>();
         path = new NavMeshPath();
+        maxAcceleration = carController.acceleration;
+    }
 
-        float multiplier = Random.Range(AccelerationMultiplierMinMax.x, AccelerationMultiplierMinMax.y);
+    public void MultiplyMaxAcceleration(float multiplier) {
         carController.acceleration *= multiplier;
         maxAcceleration = carController.acceleration;
     }
@@ -108,17 +106,17 @@ public class NavMeshAgentController : MonoBehaviour {
             float turnDirection = Vector3.Angle(transform.forward, directionVector.normalized) * Mathf.Sign(Vector3.Cross(transform.forward, directionVector.normalized).y);
             turnDirection = Mathf.Clamp(turnDirection, -carController.maxTurnAngle, carController.maxTurnAngle) / carController.maxTurnAngle;
 
-            float finalAcceleration = carController.acceleration;
+            float acceleration = 1;
 
             if (reverse) {
-                finalAcceleration = -finalAcceleration;
+                acceleration = -1;
                 turnDirection = -1;//situational. Reverse should check which turning direction is preferable.
                 reverseRaycastLength = 8f;//delicious magic numbers!
             } else
                 reverseRaycastLength = 4f;
 
             carController.Turn(turnDirection);
-            carController.Accelerate(finalAcceleration);
+            carController.Accelerate(acceleration);
         }
     }
 
@@ -142,14 +140,11 @@ public class NavMeshAgentController : MonoBehaviour {
     }
 
     void SetPathToNextNode() {
-        targetPosition = nodes[nodeIndex].transform.position;
+        targetPosition = lapSystem.nodes[nodeIndex].transform.position;
         SetPath(targetPosition);
 
-        if (nodeIndex < nodes.Length - 1) {
-            nodeIndex++;
-        } else {
-            nodeIndex = 0;
-        }
+        nodeIndex++;
+        if (nodeIndex == lapSystem.nodes.Length) nodeIndex = 0;
     }
 
     public void StartMoving() {

@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 11436038}
   - component: {fileID: 5444252}
   - component: {fileID: 6539594}
+  - component: {fileID: 114495906423316460}
   m_Layer: 8
   m_Name: NPC - Andrei
   m_TagString: NPC
@@ -561,3 +562,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140844}
   m_IsPrefabParent: 1
+--- !u!114 &114495906423316460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e79c8b952dcc74d8b44476b3140b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarDeveloperName: Nobody

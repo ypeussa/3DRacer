@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour {
     public List<PlayerController> playerCarPrefabs;
@@ -16,7 +17,11 @@ public class GameManager : MonoBehaviour {
     public float avoidanceDistance;
     public float timeScale;
     public Text madeBy;
+    public int raceLapCount = 5;
+    public UnityEvent OnRaceStartEvent;
+    public CarLapSystemEvent OnCarFinishedRaceEvent;
 
+    float selectionInputTimer;
     Vector3 carModelsParentStartPosition;
     int selectedCarIndex;
     CameraScript mainCam;
@@ -28,8 +33,6 @@ public class GameManager : MonoBehaviour {
     PlayerController player;
 
     public int DEBUG_AmountOfAICars = 1000;
-
-    public bool gameStart { get; private set; }
 
     void Start() {
         nodes = FindObjectsOfType<NodeScript>();
@@ -59,18 +62,28 @@ public class GameManager : MonoBehaviour {
 #if UNITY_EDITOR
             if (i == DEBUG_AmountOfAICars) break;
 #endif
+            List<float> accelerationMultipliers = new List<float>();
 
+            for (int j = 0; j < AICarPrefabs.Count - 1; j++) {
+                accelerationMultipliers.Add(0.8f + (1f - (j / (float)AICarPrefabs.Count)) * 0.2f);
+            }
 
             if (i < AICarPrefabs.Count && i != skipCarIndex) {
-                var npc = Instantiate(AICarPrefabs[i], spawns[i].transform.position, AICarPrefabs[i].transform.rotation);
-                npc.name = "NPC" + i;
-                npc.transform.SetParent(npcParent);
-                AICars.Add(npc);
+                var aiCar = Instantiate(AICarPrefabs[i], spawns[i].transform.position, AICarPrefabs[i].transform.rotation);
+                aiCar.name = "NPC" + i;
+                aiCar.transform.SetParent(npcParent);
+
+                int randomIndex = Random.Range(0, accelerationMultipliers.Count);
+                aiCar.MultiplyMaxAcceleration(accelerationMultipliers[randomIndex]);
+                accelerationMultipliers.RemoveAt(randomIndex);
+
+                AICars.Add(aiCar);
+                aiCar.lapSystem.OnLapFinishedEvent.AddListener(OnCarLapCompleted);
             }
         }
     }
 
-    public void StartGame() {
+    public void StartRace() {
         //disable selection menu
         carSelectionMenu.SetActive(false);
         carModelsParent.gameObject.SetActive(false);
@@ -78,17 +91,14 @@ public class GameManager : MonoBehaviour {
         //spawn AI cars and the player car
         CreateAICars(selectedCarIndex);
         player = Instantiate(playerCarPrefabs[selectedCarIndex], spawnPoint.position, Quaternion.identity);
+        player.lapSystem.OnLapFinishedEvent.AddListener(OnCarLapCompleted);
 
         //camera setup
         mainCam.Init(cameraStart.position, cameraStart.rotation, gameStartCamSize, player);
 
-        //node init
-        for (int i = 0; i < nodes.Length; i++) {
-            nodes[i].Init(player);
-        }
-
         player.enabled = false;
         StartCoroutine(CountDownCoroutine());
+        HUD.Init(player, this);
     }
 
     private IEnumerator CountDownCoroutine() {
@@ -101,15 +111,15 @@ public class GameManager : MonoBehaviour {
         HUD.SetCountdownText("1");
         yield return countDownWait;
         HUD.SetCountdownText("GO!");
-        HUD.StartLap();
         player.enabled = true;
-        yield return countDownWait;
-        HUD.SetCountdownText("");
 
         //start AI cars
         for (int i = 0; i < AICars.Count; i++) {
             AICars[i].StartMoving();
         }
+
+        yield return countDownWait;
+        HUD.SetCountdownText("");
     }
 
     //input 
@@ -124,11 +134,10 @@ public class GameManager : MonoBehaviour {
         //selection menu input
         if (carSelectionMenu.activeSelf) {
             if (Input.GetKeyDown(KeyCode.Return)) {
-                StartGame();
+                StartRace();
             }
 
             //using axis for controller support
-
             float horizontalAxis = Input.GetAxisRaw("Horizontal");
 
             if (horizontalAxis != 0 && selectionInputTimer < Time.time) {
@@ -141,10 +150,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    float selectionInputTimer;
-
     //selection menu events
-
     public void SelectNextCar() {
         selectedCarIndex++;
         if (selectedCarIndex == selectionMenuCars.Count)
@@ -163,7 +169,24 @@ public class GameManager : MonoBehaviour {
         UpdateMadeByText();
     }
 
-    private void UpdateMadeByText() {
-        madeBy.text = "Made by " + selectionMenuCars[selectedCarIndex].CarDeveloperName;
+    void UpdateMadeByText() {
+        madeBy.text = "Made by " + selectionMenuCars[selectedCarIndex].GetComponent<CarInfo>().CarDeveloperName;
+    }
+
+    void OnCarLapCompleted(CarLapSystem lapSystem) {
+        if (lapSystem.lap == raceLapCount + 1) {
+            OnCarFinishedRaceEvent.Invoke(lapSystem);
+
+            var player = lapSystem.GetComponent<PlayerController>();
+            if (player) {
+                //set player to AI mode (quick hack!)
+                player.enabled = false;
+                player.GetComponent<CarMovement>().maxTurnAngle = 35f;
+                player.GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = false;
+                var AI = player.gameObject.AddComponent<NavMeshAgentController>();
+                AI.nodeIndex = 1;
+                AI.StartMoving();
+            }
+        }
     }
 }

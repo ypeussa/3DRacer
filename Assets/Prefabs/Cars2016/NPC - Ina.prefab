@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5428778}
   - component: {fileID: 6548338}
   - component: {fileID: 114298413985597736}
+  - component: {fileID: 114382290972744276}
+  - component: {fileID: 114098298156189144}
   m_Layer: 8
   m_Name: NPC - Ina
   m_TagString: NPC
@@ -846,6 +848,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1754246191453542}
   m_Mesh: {fileID: 4300000, guid: fcf37de0223be1f45be6ff3ecff382da, type: 3}
+--- !u!114 &114098298156189144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f896022a428a64e811e0855c30f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLapRecordEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CarLapSystemEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114223620109492316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -879,6 +897,18 @@ MonoBehaviour:
   - {fileID: 146477846019779958}
   - {fileID: 146879259402666516}
   centerOfMass: {fileID: 4226438276688500}
+--- !u!114 &114382290972744276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e79c8b952dcc74d8b44476b3140b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarDeveloperName: Ina
 --- !u!114 &114442205591082840
 MonoBehaviour:
   m_ObjectHideFlags: 1

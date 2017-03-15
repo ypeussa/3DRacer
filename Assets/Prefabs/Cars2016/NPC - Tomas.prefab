@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 11466564}
   - component: {fileID: 5462364}
   - component: {fileID: 6533200}
+  - component: {fileID: 114872962045263948}
   m_Layer: 8
   m_Name: NPC - Tomas
   m_TagString: NPC
@@ -509,3 +510,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 156094}
   m_IsPrefabParent: 1
+--- !u!114 &114872962045263948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e79c8b952dcc74d8b44476b3140b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarDeveloperName: Nobody

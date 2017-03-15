@@ -78,6 +78,8 @@ GameObject:
   - component: {fileID: 6540076}
   - component: {fileID: 208119648202156044}
   - component: {fileID: 114856851736809720}
+  - component: {fileID: 114326551859092706}
+  - component: {fileID: 114153365985775232}
   m_Layer: 8
   m_Name: PLAYER - Andrei
   m_TagString: Player
@@ -812,7 +814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fe7e09f513f2e488d99e993e12ed5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarDeveloperName: Andrei
   firstPersonCameraPosition: {fileID: 465578}
 --- !u!146 &14607740
 WheelCollider:
@@ -1035,6 +1036,18 @@ Transform:
   m_Father: {fileID: 466960}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114153365985775232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e79c8b952dcc74d8b44476b3140b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarDeveloperName: Andrei
 --- !u!114 &114306247821945898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1046,10 +1059,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50aa0ad75f0565f4982eb80a0f24c2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5446004}
   ps: {fileID: 198000904722130592}
   skidMarkThreshold: 0.95
   skidmarkDuration: 0.25
+--- !u!114 &114326551859092706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f896022a428a64e811e0855c30f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLapFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CarLapSystemEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  nodes: []
 --- !u!114 &114856851736809720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1080,7 +1109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50aa0ad75f0565f4982eb80a0f24c2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5446004}
   ps: {fileID: 198435684019157704}
   skidMarkThreshold: 0.95
   skidmarkDuration: 0.25

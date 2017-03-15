@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class CarController : MonoBehaviour
+public class CarMovement : MonoBehaviour
 {
     public float acceleration;
     public float maxTurnAngle;
