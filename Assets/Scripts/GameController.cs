@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Events;
 
-public class GameManager : MonoBehaviour {
-    public List<PlayerController> playerCarPrefabs;
-    public List<NavMeshAgentController> AICarPrefabs;
+public class GameController : MonoBehaviour {
+    public List<PlayerCar> playerCarPrefabs;
+    public List<AICar> AICarPrefabs;
     public GameObject carSelectionMenu;
     public Transform spawnPoint;
     public Transform cameraStart;
     public Transform carModelsParent;
-    public HUDScript HUD;
+    public HUD HUD;
     public float gameStartCamSize;
     public float avoidanceDistance;
     public float timeScale;
@@ -20,24 +20,21 @@ public class GameManager : MonoBehaviour {
     public int raceLapCount = 5;
     public UnityEvent OnRaceStartEvent;
     public CarLapSystemEvent OnCarFinishedRaceEvent;
+    public int DEBUG_AmountOfAICars = 1000;
 
     float selectionInputTimer;
     Vector3 carModelsParentStartPosition;
     int selectedCarIndex;
-    CameraScript mainCam;
+    CameraSystem mainCam;
     Vector3 selectionCarPositionOffset = new Vector3(15, 0, 0);
-    List<PlayerController> selectionMenuCars;
-    List<NavMeshAgentController> AICars;
-    NodeScript[] nodes;
-    GameObject[] spawns;
-    PlayerController player;
-
-    public int DEBUG_AmountOfAICars = 1000;
+    List<PlayerCar> selectionMenuCars;
+    List<AICar> AICars;
+    GameObject[] spawnPoints;
+    PlayerCar player;
 
     void Start() {
-        nodes = FindObjectsOfType<NodeScript>();
-        spawns = GameObject.FindGameObjectsWithTag("NPCSpawn");
-        mainCam = FindObjectOfType<CameraScript>();
+        spawnPoints = GameObject.FindGameObjectsWithTag("NPCSpawn");
+        mainCam = FindObjectOfType<CameraSystem>();
 
         carModelsParentStartPosition = carModelsParent.transform.position;
         CreateSelectionCarModels();
@@ -46,7 +43,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void CreateSelectionCarModels() {
-        selectionMenuCars = new List<PlayerController>();
+        selectionMenuCars = new List<PlayerCar>();
 
         for (int i = 0; i < playerCarPrefabs.Count; i++) {
             selectionMenuCars.Add(Instantiate(playerCarPrefabs[i], carModelsParent));
@@ -56,9 +53,9 @@ public class GameManager : MonoBehaviour {
 
     void CreateAICars(int skipCarIndex) {
         var npcParent = GameObject.Find("NPCs").transform;
-        AICars = new List<NavMeshAgentController>();
+        AICars = new List<AICar>();
 
-        for (int i = 0; i < spawns.Length; i++) {
+        for (int i = 0; i < spawnPoints.Length; i++) {
 #if UNITY_EDITOR
             if (i == DEBUG_AmountOfAICars) break;
 #endif
@@ -69,7 +66,7 @@ public class GameManager : MonoBehaviour {
             }
 
             if (i < AICarPrefabs.Count && i != skipCarIndex) {
-                var aiCar = Instantiate(AICarPrefabs[i], spawns[i].transform.position, AICarPrefabs[i].transform.rotation);
+                var aiCar = Instantiate(AICarPrefabs[i], spawnPoints[i].transform.position, AICarPrefabs[i].transform.rotation);
                 aiCar.name = "NPC" + i;
                 aiCar.transform.SetParent(npcParent);
 
@@ -96,9 +93,10 @@ public class GameManager : MonoBehaviour {
         //camera setup
         mainCam.Init(cameraStart.position, cameraStart.rotation, gameStartCamSize, player);
 
+        //start countdown
         player.enabled = false;
-        StartCoroutine(CountDownCoroutine());
         HUD.Init(player, this);
+        StartCoroutine(CountDownCoroutine());
     }
 
     private IEnumerator CountDownCoroutine() {
@@ -177,13 +175,13 @@ public class GameManager : MonoBehaviour {
         if (lapSystem.lap == raceLapCount + 1) {
             OnCarFinishedRaceEvent.Invoke(lapSystem);
 
-            var player = lapSystem.GetComponent<PlayerController>();
+            var player = lapSystem.GetComponent<PlayerCar>();
             if (player) {
                 //set player to AI mode (quick hack!)
                 player.enabled = false;
                 player.GetComponent<CarMovement>().maxTurnAngle = 35f;
                 player.GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = false;
-                var AI = player.gameObject.AddComponent<NavMeshAgentController>();
+                var AI = player.gameObject.AddComponent<AICar>();
                 AI.nodeIndex = 1;
                 AI.StartMoving();
             }

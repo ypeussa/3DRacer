@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDScript : MonoBehaviour {
+public class HUD : MonoBehaviour {
     public Text lapTimeText, countDownText;
     public GameObject raceFinishedScreen;
     public Text raceFinishedLapTimesText;
@@ -13,7 +13,7 @@ public class HUDScript : MonoBehaviour {
     CarLapSystem playerLapSystem;
     List<CarLapSystem> finishedCars = new List<CarLapSystem>();
 
-    public void Init(PlayerController player, GameManager gm) {
+    public void Init(PlayerCar player, GameController gm) {
         playerLapSystem = player.lapSystem;
         raceLapCount = gm.raceLapCount;
 
@@ -50,7 +50,7 @@ public class HUDScript : MonoBehaviour {
 
     public void OnCarFinishedRace(CarLapSystem lapSystem) {
         //show race finished screen
-        if (lapSystem.GetComponent<PlayerController>()) {
+        if (lapSystem.GetComponent<PlayerCar>()) {
             raceFinishedScreen.gameObject.SetActive(true);
             lapTimeText.gameObject.SetActive(false);
         }

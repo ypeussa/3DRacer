@@ -8,17 +8,17 @@ public class CarLapSystem : MonoBehaviour {
     public CarLapSystemEvent OnLapFinishedEvent;
     public int lap { get; private set; }
 
-    public NodeScript[] nodes;
+    public Node[] nodes;
     Vector3 nextNodePos;
 
-    public NodeScript currentNode { get { return nodes[nodeIndex]; } }
+    public Node currentNode { get { return nodes[nodeIndex]; } }
     public int nodeIndex { get; private set; }
     public float currentLapTime {get;private set;}
     public float bestLapTime { get; private set; }
 
     void Awake() {
         //find and sort nodes
-        nodes = FindObjectsOfType<NodeScript>();
+        nodes = FindObjectsOfType<Node>();
         System.Array.Sort(nodes, (x, y) => x.index - y.index);
 
         bestLapTime = float.MaxValue;
@@ -34,7 +34,7 @@ public class CarLapSystem : MonoBehaviour {
 
     void OnTriggerEnter(Collider c) {
         if (c.tag == "Node") {
-            var node = c.GetComponent<NodeScript>();
+            var node = c.GetComponent<Node>();
             if (node.index == nodeIndex) {
                 //next node
                 nodeIndex++;

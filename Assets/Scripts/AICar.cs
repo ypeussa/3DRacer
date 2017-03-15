@@ -2,15 +2,16 @@
 using UnityEngine.AI;
 
 /// <summary>
-/// Unity navmesh agent runs in update. We have to use fixed update for smooth movement as the player car and the camera both use it as well.
-/// This required a bit of wrangling.
+/// Unity navmesh agent runs in update. 
+/// We have to use fixed update for smooth movement as the player car and the camera both use it as well.
 /// </summary>
 [RequireComponent(typeof(CarMovement))]
 [RequireComponent(typeof(CarLapSystem))]
-public class NavMeshAgentController : MonoBehaviour {
+public class AICar : MonoBehaviour {
     public float decreaseAccelerationOnImpactThreshold = 2f;
     public float disableInputOnImpactThreshold = 10f;
     public float PathRefreshInterval = 1f;
+    public bool DEBUG_DisableInput = false;
 
     public CarLapSystem lapSystem { get; private set; }
     CarMovement carController;
@@ -40,7 +41,15 @@ public class NavMeshAgentController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+#if UNITY_EDITOR
+        if (DEBUG_DisableInput) {
+            DEBUG_DisableInput = false;
+            disableTimer = 4f;
+        }
+#endif
+
         //impact timers
+        bool movementEnabled = true;
         if (disableTimer > 0) {
             disableTimer -= Time.deltaTime;
 
@@ -48,7 +57,7 @@ public class NavMeshAgentController : MonoBehaviour {
                 carController.acceleration = maxAcceleration;
                 pathRefreshTimer = 0;
             }
-            return;
+            movementEnabled = false;
         } else if (lowerSpeedTimer > 0) {
             lowerSpeedTimer -= Time.deltaTime;
 
@@ -64,14 +73,6 @@ public class NavMeshAgentController : MonoBehaviour {
 
         if (path != null && path.corners.Length > 1) {
 
-#if UNITY_EDITOR
-            for (int i = 0; i < path.corners.Length - 1; i++) {
-                Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
-            }
-
-            Debug.DrawRay(transform.position + Vector3.one * 0.5f, transform.forward * reverseRaycastLength, Color.magenta);
-#endif
-
             bool obstacleInFront = Physics.Raycast(transform.position + Vector3.one * 0.5f, transform.forward, reverseRaycastLength,
                 1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Car"));
             if (!reverse && rb.velocity.magnitude < 1f && obstacleInFront)
@@ -84,39 +85,49 @@ public class NavMeshAgentController : MonoBehaviour {
             directionVector.y = 0;
             directionVector.Normalize();
 
-            if (!reverse) {
-                var pathNormal = Vector3.zero;
-                if (pathIndex == 0)
-                    pathNormal = pathPosition - path.corners[1];
-                else
-                    pathNormal = path.corners[pathIndex - 1] - path.corners[pathIndex];
-                pathNormal.Normalize();
+            var pathNormal = Vector3.zero;
+            if (pathIndex == 0)
+                pathNormal = pathPosition - path.corners[1];
+            else
+                pathNormal = path.corners[pathIndex - 1] - path.corners[pathIndex];
+            pathNormal.Normalize();
 
-                //check if next path corner reached
-                if (CheckPlaneDistance(pathPosition, pathNormal, transform.position, rb.velocity.magnitude * 0.5f)) {
-                    pathIndex++;
+            //check if next path corner reached
+            if (CheckPlaneDistance(pathPosition, pathNormal, transform.position, rb.velocity.magnitude * 0.5f)) {
+                pathIndex++;
 
-                    //last corner -> set new target
-                    if (pathIndex == path.corners.Length) {
-                        SetPathToNextNode();
-                    }
+                //last corner -> set new target
+                if (pathIndex == path.corners.Length) {
+                    SetPathToNextNode();
                 }
             }
 
+            //signed angle
             float turnDirection = Vector3.Angle(transform.forward, directionVector.normalized) * Mathf.Sign(Vector3.Cross(transform.forward, directionVector.normalized).y);
+            //clamp to -1 to 1
             turnDirection = Mathf.Clamp(turnDirection, -carController.maxTurnAngle, carController.maxTurnAngle) / carController.maxTurnAngle;
 
             float acceleration = 1;
 
             if (reverse) {
                 acceleration = -1;
-                turnDirection = -1;//situational. Reverse should check which turning direction is preferable.
                 reverseRaycastLength = 8f;//delicious magic numbers!
             } else
                 reverseRaycastLength = 4f;
 
-            carController.Turn(turnDirection);
-            carController.Accelerate(acceleration);
+            if (Vector3.Dot(transform.forward, rb.velocity) < 0)
+                turnDirection = 0;
+
+            if (movementEnabled) {
+                carController.Turn(turnDirection);
+                carController.Accelerate(acceleration);
+            }
+#if UNITY_EDITOR
+            for (int i = 0; i < path.corners.Length - 1; i++) {
+                Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
+            }
+            Debug.DrawRay(transform.position + Vector3.one * 0.5f, transform.forward * reverseRaycastLength, Color.magenta);
+#endif
         }
     }
 

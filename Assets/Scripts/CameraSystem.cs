@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
-public class CameraScript : MonoBehaviour {
+public class CameraSystem : MonoBehaviour {
     public Camera topDownCamera, firstPersonCamera;
     public Vector3 cameraPosOffset;
     public float moveSpeed;
     public float nodePlayerDiv;
 
-    PlayerController player;
+    PlayerCar player;
     Vector3 nextNodePos;
     Transform playerT;
     bool follow;
 
-    public void Init(Vector3 position, Quaternion rotation, float gameStartCamSize, PlayerController player) {
+    public void Init(Vector3 position, Quaternion rotation, float gameStartCamSize, PlayerCar player) {
 
         transform.position = position;
         transform.rotation = rotation;

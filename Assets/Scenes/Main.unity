@@ -23134,7 +23134,7 @@ MonoBehaviour:
   avoidanceDistance: 10
   timeScale: 1
   madeBy: {fileID: 194004387}
-  raceLapCount: 1
+  raceLapCount: 5
   OnRaceStartEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -23145,7 +23145,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: CarLapSystemEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  DEBUG_AmountOfAICars: 1000
+  DEBUG_AmountOfAICars: 2
 --- !u!4 &1327967763
 Transform:
   m_ObjectHideFlags: 0

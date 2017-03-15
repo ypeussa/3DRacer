@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(CarMovement))]
 [RequireComponent(typeof(CarLapSystem))]
-public class PlayerController : MonoBehaviour {
+public class PlayerCar : MonoBehaviour {
     public Transform firstPersonCameraPosition;
 
     public CarLapSystem lapSystem { get; private set; }
