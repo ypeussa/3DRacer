@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour {
             List<float> accelerationMultipliers = new List<float>();
 
             for (int j = 0; j < AICarPrefabs.Count - 1; j++) {
-                accelerationMultipliers.Add(0.8f + (1f - (j / (float)AICarPrefabs.Count)) * 0.2f);
+                accelerationMultipliers.Add(0.7f + (1f - (j / (float)AICarPrefabs.Count)) * 0.3f);
             }
 
             if (i < AICarPrefabs.Count && i != skipCarIndex) {

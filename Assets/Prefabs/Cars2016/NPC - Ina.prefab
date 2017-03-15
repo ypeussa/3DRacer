@@ -79,10 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ae9ba5c06acb443ba135f15473feac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AccelerationMultiplierMinMax: {x: 0.7, y: 1}
   decreaseAccelerationOnImpactThreshold: 3
   disableInputOnImpactThreshold: 12
   PathRefreshInterval: 0.5
+  DEBUG_DisableInput: 0
+  nodeIndex: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -859,11 +860,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f896022a428a64e811e0855c30f35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnLapRecordEvent:
+  OnLapFinishedEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: CarLapSystemEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  nodes: []
 --- !u!114 &114223620109492316
 MonoBehaviour:
   m_ObjectHideFlags: 1

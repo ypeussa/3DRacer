@@ -25,6 +25,7 @@ public class AICar : MonoBehaviour {
     float pathRefreshTimer = 0;
     float reverseRaycastLength = 4f;
     bool reverse = false;
+    Vector3 targetDirection;
 
     void Awake() {
         //get components
@@ -72,7 +73,6 @@ public class AICar : MonoBehaviour {
         }
 
         if (path != null && path.corners.Length > 1) {
-
             bool obstacleInFront = Physics.Raycast(transform.position + Vector3.one * 0.5f, transform.forward, reverseRaycastLength,
                 1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Car"));
             if (!reverse && rb.velocity.magnitude < 1f && obstacleInFront)
@@ -84,6 +84,8 @@ public class AICar : MonoBehaviour {
             var directionVector = pathPosition - transform.position;
             directionVector.y = 0;
             directionVector.Normalize();
+
+            targetDirection = Vector3.Lerp(targetDirection, directionVector, Time.deltaTime * 3f);
 
             var pathNormal = Vector3.zero;
             if (pathIndex == 0)
@@ -103,7 +105,7 @@ public class AICar : MonoBehaviour {
             }
 
             //signed angle
-            float turnDirection = Vector3.Angle(transform.forward, directionVector.normalized) * Mathf.Sign(Vector3.Cross(transform.forward, directionVector.normalized).y);
+            float turnDirection = Vector3.Angle(transform.forward, targetDirection) * Mathf.Sign(Vector3.Cross(transform.forward, targetDirection).y);
             //clamp to -1 to 1
             turnDirection = Mathf.Clamp(turnDirection, -carController.maxTurnAngle, carController.maxTurnAngle) / carController.maxTurnAngle;
 

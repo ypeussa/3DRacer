@@ -60,13 +60,17 @@ public class HUD : MonoBehaviour {
 
         string text = "";
         for (int i = 0; i < finishedCars.Count; i++) {
-            text += string.Format("{0}.  -  {1}  -  Best time: {2:0.00}",
+            string text2 = string.Format("{0}.  -  {1}  -  Best time: {2:0.00}",
                 i + 1,
                 finishedCars[i].GetComponent<CarInfo>().CarDeveloperName,
                 finishedCars[i].bestLapTime
                 );
 
-            if (i < finishedCars.Count -1) text += "\n";
+            if (finishedCars[i].GetComponent<PlayerCar>())
+                text2 = "* " + text2 + " *";
+
+            if (i < finishedCars.Count -1) text2 += "\n";
+            text += text2;
         }
 
         raceFinishedLapTimesText.text = text;
