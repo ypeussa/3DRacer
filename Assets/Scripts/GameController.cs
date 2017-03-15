@@ -122,16 +122,13 @@ public class GameController : MonoBehaviour {
 
     //input 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.R)) {
-            SceneManager.LoadScene("Main");
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }
         //selection menu input
         if (carSelectionMenu.activeSelf) {
-            if (Input.GetKeyDown(KeyCode.Return)) {
+            if (Input.GetButtonDown("Start")) {
                 StartRace();
             }
 
@@ -145,6 +142,10 @@ public class GameController : MonoBehaviour {
                 selectionInputTimer = Time.time + 0.3f;
             } else if (horizontalAxis == 0)
                 selectionInputTimer = 0;
+        } else {
+            if (Input.GetButtonDown("Start")) {
+                SceneManager.LoadScene("Main");
+            }
         }
     }
 
@@ -179,11 +180,12 @@ public class GameController : MonoBehaviour {
             if (player) {
                 //set player to AI mode (quick hack!)
                 player.enabled = false;
-                player.GetComponent<CarMovement>().maxTurnAngle = 35f;
+                player.GetComponent<CarMovement>().maxTurnAngle = 45f;
                 player.GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = false;
                 var AI = player.gameObject.AddComponent<AICar>();
                 AI.nodeIndex = 1;
                 AI.StartMoving();
+                AI.disableInputOnImpactThreshold = 1000000f;
             }
         }
     }

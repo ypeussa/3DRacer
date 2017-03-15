@@ -16,7 +16,7 @@ public class AICar : MonoBehaviour {
     public CarLapSystem lapSystem { get; private set; }
     CarMovement carController;
     Rigidbody rb;
-    public int nodeIndex;
+    public int nodeIndex { get; set; }
     float disableTimer, lowerSpeedTimer;
     float maxAcceleration;
     Vector3 targetPosition;
@@ -110,6 +110,11 @@ public class AICar : MonoBehaviour {
             turnDirection = Mathf.Clamp(turnDirection, -carController.maxTurnAngle, carController.maxTurnAngle) / carController.maxTurnAngle;
 
             float acceleration = 1;
+
+            //brake in high velocity turning
+            if (!reverse && Mathf.Abs(turnDirection) > 0.2f && rb.velocity.magnitude > 15f) {
+                acceleration = -1;
+            }
 
             if (reverse) {
                 acceleration = -1;

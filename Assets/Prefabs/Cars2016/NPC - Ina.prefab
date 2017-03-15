@@ -83,7 +83,6 @@ MonoBehaviour:
   disableInputOnImpactThreshold: 12
   PathRefreshInterval: 0.5
   DEBUG_DisableInput: 0
-  nodeIndex: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -891,8 +890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5374c52453613ca42a47ac2a9f323ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 350
-  maxTurnAngle: 35
+  acceleration: 450
+  brakeForce: 1200
+  maxTurnAngle: 45
   tires:
   - {fileID: 146450679570716204}
   - {fileID: 146957600118140866}
@@ -949,7 +949,7 @@ WheelCollider:
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.8
-    m_ExtremumValue: 4
+    m_ExtremumValue: 2
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
@@ -978,7 +978,7 @@ WheelCollider:
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.8
-    m_ExtremumValue: 4
+    m_ExtremumValue: 2
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
@@ -1007,7 +1007,7 @@ WheelCollider:
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.8
-    m_ExtremumValue: 4
+    m_ExtremumValue: 2
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
@@ -1036,7 +1036,7 @@ WheelCollider:
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.8
-    m_ExtremumValue: 4
+    m_ExtremumValue: 2
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
     m_Stiffness: 1

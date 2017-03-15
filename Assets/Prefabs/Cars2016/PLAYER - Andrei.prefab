@@ -797,7 +797,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119518}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 070bfcbe4dc94374da965caf8675f6ad, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -839,7 +839,7 @@ WheelCollider:
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.8
-    m_ExtremumValue: 4
+    m_ExtremumValue: 1.7
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
@@ -868,7 +868,7 @@ WheelCollider:
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.8
-    m_ExtremumValue: 4
+    m_ExtremumValue: 1.7
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
@@ -897,7 +897,7 @@ WheelCollider:
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.8
-    m_ExtremumValue: 4
+    m_ExtremumValue: 1.7
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
@@ -926,7 +926,7 @@ WheelCollider:
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.8
-    m_ExtremumValue: 4
+    m_ExtremumValue: 1.7
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
@@ -1090,8 +1090,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5374c52453613ca42a47ac2a9f323ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 350
-  maxTurnAngle: 25
+  acceleration: 500
+  brakeForce: 1100
+  maxTurnAngle: 30
   tires:
   - {fileID: 14697638}
   - {fileID: 14626614}
@@ -6495,7 +6496,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1, y: 1, z: 2}
+  m_Extents: {x: 0.05, y: 0.05, z: 0.05}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 0

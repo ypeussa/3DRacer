@@ -29,7 +29,7 @@ public class CameraSystem : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.C)) {
+        if (follow && Input.GetButtonDown("CameraMode")) {
             if (topDownCamera.gameObject.activeSelf) {
                 topDownCamera.gameObject.SetActive(false);
                 firstPersonCamera.gameObject.SetActive(true);
@@ -44,7 +44,7 @@ public class CameraSystem : MonoBehaviour {
 
                 firstPersonCamera.transform.parent = transform;
             }
-               
+
         }
     }
 

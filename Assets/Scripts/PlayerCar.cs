@@ -14,7 +14,7 @@ public class PlayerCar : MonoBehaviour {
     }
 
     void Update() {
-        float verticalAxis = Input.GetAxis("Vertical");
+        float verticalAxis = Input.GetAxisRaw("Vertical");
         float horizontalAxis = Input.GetAxis("Horizontal");
 
         carController.Accelerate(verticalAxis);

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 public class CarMovement : MonoBehaviour {
-    public float acceleration;
-    public float maxTurnAngle;
+    public float acceleration = 500, brakeForce = 1000;
+    public float maxTurnAngle = 30;
     public List<WheelCollider> tires;
     public Transform centerOfMass;
 
@@ -39,8 +39,13 @@ public class CarMovement : MonoBehaviour {
     }
 
     public void Accelerate(float accelerationAxis) {
+        float force = acceleration;
         for (int i = 0; i < tires.Count; i++) {
-            tires[i].motorTorque = acceleration * accelerationAxis;
+
+            if (accelerationAxis < 0 && Vector3.Dot(rb.velocity.normalized, transform.forward) > 0) {
+                force = brakeForce;
+            }
+            tires[i].motorTorque = force * accelerationAxis;
         }
     }
 
@@ -50,6 +55,5 @@ public class CarMovement : MonoBehaviour {
         for (int i = 0; i < 2; i++) {
             tires[i].steerAngle = turnAngle;
         }
-
     }
 }
