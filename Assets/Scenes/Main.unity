@@ -328,7 +328,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 30481939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.79, y: 0.2, z: -13.48}
+  m_LocalPosition: {x: 21.79, y: 0.5, z: -13.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15313,7 +15313,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3a09f8d4a99ba6446a0b1afe5c56f1fc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.702
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -15351,7 +15351,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -23111,20 +23111,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCarPrefabs:
-  - {fileID: 11441876, guid: d3ef251e7ecc5ac42bc54ae449f015a1, type: 2}
-  - {fileID: 11418912, guid: 93a46a49243e6a54dac6be3be37b9ce8, type: 2}
-  - {fileID: 11440840, guid: 4d59dc112657d3645a0911bdd80b674e, type: 2}
-  - {fileID: 11492592, guid: 0b4180720e480554da128a2437bbe26f, type: 2}
-  - {fileID: 11460948, guid: 642f004c29f258b45b4b7e8443519d72, type: 2}
-  - {fileID: 11435562, guid: 5c6d1aa7a13fbd84fb9bf01f3126f959, type: 2}
+  - {fileID: 11441876, guid: d297721dac35ac545ae007b613f976c1, type: 2}
+  - {fileID: 114302074429608306, guid: d42e62ff20d00ba44ad30e5a467cbf77, type: 2}
+  - {fileID: 114302074429608306, guid: 9a5f5433ee08a494e999b48ff930f2b3, type: 2}
+  - {fileID: 114632397924221012, guid: 415f31681933a854daceba0cf5e5e1a8, type: 2}
+  - {fileID: 11441876, guid: f5e4a352ab802d844bb0484316ee0632, type: 2}
+  - {fileID: 114079661013137638, guid: ac75ce33c680aa04399dc670ea5277ca, type: 2}
   AICarPrefabs:
-  - {fileID: 11459484, guid: e43eac7aa3a464d4eb871150399c3b43, type: 2}
-  - {fileID: 11459484, guid: e43eac7aa3a464d4eb871150399c3b43, type: 2}
-  - {fileID: 11459484, guid: e43eac7aa3a464d4eb871150399c3b43, type: 2}
-  - {fileID: 11459484, guid: e43eac7aa3a464d4eb871150399c3b43, type: 2}
-  - {fileID: 11459484, guid: e43eac7aa3a464d4eb871150399c3b43, type: 2}
-  - {fileID: 11459484, guid: e43eac7aa3a464d4eb871150399c3b43, type: 2}
-  - {fileID: 11459484, guid: e43eac7aa3a464d4eb871150399c3b43, type: 2}
+  - {fileID: 114543737232518968, guid: 2a0283a42d5f10f43a81b8836d3c5bea, type: 2}
+  - {fileID: 114521070461148516, guid: 124527d5b88cbda4fac8dd6d3ef22e99, type: 2}
+  - {fileID: 114158472991921612, guid: 89e5266acc8955745ad243ab9f0c0cec, type: 2}
+  - {fileID: 114925910622961336, guid: 4ba9387fae992db4a8f2d911704dbac2, type: 2}
+  - {fileID: 114984600712071306, guid: 479b4fef1d663d54f9776c605453a43a, type: 2}
+  - {fileID: 114768342586180048, guid: e7f5941e44baa534e8963011a4acfd04, type: 2}
   carSelectionMenu: {fileID: 611748901}
   spawnPoint: {fileID: 30481940}
   cameraStart: {fileID: 1080328188}
@@ -23134,7 +23133,7 @@ MonoBehaviour:
   avoidanceDistance: 10
   timeScale: 1
   madeBy: {fileID: 194004387}
-  raceLapCount: 1
+  raceLapCount: 5
   OnRaceStartEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -27241,7 +27240,7 @@ Camera:
   far clip plane: 200
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

@@ -89,7 +89,7 @@ public class GameController : MonoBehaviour {
         CreateAICars(selectedCarIndex);
         player = Instantiate(playerCarPrefabs[selectedCarIndex], spawnPoint.position, Quaternion.identity);
         player.lapSystem.OnLapFinishedEvent.AddListener(OnCarLapCompleted);
-
+        player.SelectCar();
         //camera setup
         mainCam.Init(cameraStart.position, cameraStart.rotation, gameStartCamSize, player);
 

@@ -21,6 +21,12 @@ public class PlayerCar : MonoBehaviour {
         carController.Turn(horizontalAxis);
     }
 
+    public RandomAudioPlayer SelectedAudio;
+
+    public void SelectCar() {
+        if (SelectedAudio) SelectedAudio.Play();
+    }
+
     public void SetAsSelectionMenuCar(Vector3 position, Quaternion rotation) {
         transform.localPosition = position;
         transform.rotation = rotation;
