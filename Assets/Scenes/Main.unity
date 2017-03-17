@@ -32325,7 +32325,7 @@ GameObject:
   - component: {fileID: 1893414024}
   - component: {fileID: 1893414023}
   - component: {fileID: 1893414022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Track
   m_TagString: Track
   m_Icon: {fileID: 0}

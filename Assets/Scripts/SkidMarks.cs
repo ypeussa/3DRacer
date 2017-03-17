@@ -8,9 +8,11 @@ public class SkidMarks : MonoBehaviour {
     public float skidmarkDuration = 0.25f;
     float skidmarkTimer;
     Rigidbody rb;
+    int groundMask;
 
     private void Awake() {
         rb = GetComponentInParent<Rigidbody>();
+        groundMask = 1 << LayerMask.NameToLayer("Ground");
     }
 
     void Update() {
@@ -21,6 +23,7 @@ public class SkidMarks : MonoBehaviour {
         if (velocity.magnitude < 1) dot = 0;
 
         if (dot == 0) return;
+        if (!Physics.Raycast(transform.position, Vector3.down, 0.25f, groundMask)) return;
 
         if (dot < skidMarkThreshold) {
             skidmarkTimer = Time.time + skidmarkDuration;

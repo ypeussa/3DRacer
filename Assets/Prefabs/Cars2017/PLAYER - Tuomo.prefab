@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPersonCameraPosition: {fileID: 465578}
+  SelectedAudio: {fileID: 0}
 --- !u!146 &14607740
 WheelCollider:
   m_ObjectHideFlags: 1
@@ -1038,8 +1039,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5374c52453613ca42a47ac2a9f323ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 500
-  brakeForce: 1100
+  acceleration: 560
+  brakeForce: 1500
   maxTurnAngle: 30
   tires:
   - {fileID: 14697638}

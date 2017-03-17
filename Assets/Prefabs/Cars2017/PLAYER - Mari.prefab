@@ -3618,14 +3618,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bbf9f0eb0ef3a4c9a805a826ea3964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RandomChange: 20
+  RandomChange: 35
   delay: 0.4
   DontRepeatSound: 1
   Audio:
   - {fileID: 82002812149503028}
   - {fileID: 82467502518154374}
   - {fileID: 82659364354672012}
-  PlayOnAwake: 1
+  PlayOnAwake: 0
 --- !u!114 &114587250906984722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3654,7 +3654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfb91dd726b9f54e8176971b66d1949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionForce: 14
+  tag: Player
+  collisionForce: 5
   eventMinDelay: 1
   OnCollisionEvent:
     m_PersistentCalls:
